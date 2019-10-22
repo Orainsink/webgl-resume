@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import loop from "../utils/loopUtil";
@@ -85,9 +84,7 @@ Drop.defaultOptions = {
  * @return {THREE.Mesh}
  */
 Drop.prototype.getPlane = function() {
-  var texture = new THREE.TextureLoader().load(
-    require("Public/img/texture-drop.png")
-  );
+  var texture = new THREE.TextureLoader().load(require("Public/img/texture-drop.png"));
 
   var material = new THREE.MeshBasicMaterial({
     map: texture,

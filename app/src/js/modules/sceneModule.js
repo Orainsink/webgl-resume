@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import SPRITE3D from "../libs/sprite3DLib";
@@ -109,10 +108,7 @@ var SCENE = (function() {
 
         // handle scroll smoothing (mac trackpad for instance)
         if (elapsed > 50 && !isScrolling) {
-          if (
-            event.originalEvent.detail > 0 ||
-            event.originalEvent.wheelDelta < 0
-          ) {
+          if (event.originalEvent.detail > 0 || event.originalEvent.wheelDelta < 0) {
             next();
           } else {
             prev();
@@ -184,10 +180,7 @@ var SCENE = (function() {
     function setupBackground() {
       // add background particles and lines
       // rangeY based on the size and the number of sections
-      var rangeY = [
-        parameters.sectionHeight,
-        -sections.length * parameters.sectionHeight - parameters.sectionHeight
-      ];
+      var rangeY = [parameters.sectionHeight, -sections.length * parameters.sectionHeight - parameters.sectionHeight];
 
       var backgroundParticles = new BackgroundParticles({
         rangeY: rangeY,

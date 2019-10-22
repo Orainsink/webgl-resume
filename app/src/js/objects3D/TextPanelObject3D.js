@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 /**
@@ -34,8 +33,7 @@ function TextPanel(text, options) {
   var canvas = document.createElement("canvas");
   var context = canvas.getContext("2d");
 
-  var font =
-    parameters.style + " " + parameters.size + "px" + " " + parameters.font;
+  var font = parameters.style + " " + parameters.size + "px" + " " + parameters.font;
 
   context.font = font;
 

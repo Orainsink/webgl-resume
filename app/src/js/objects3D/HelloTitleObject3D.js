@@ -2,7 +2,7 @@
 
 import BackgroundLines from "./BackgroundLinesObject3D";
 
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import SPRITE3D from "../libs/sprite3DLib";

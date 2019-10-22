@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import random from "../utils/randomUtil";
@@ -115,21 +114,9 @@ FlowField.prototype.getCurves = function(points) {
     for (var j = 0, k = subsPoints.length; j < k; j++) {
       var point = subsPoints[j].clone();
 
-      point.x += map(
-        noise(noiseX),
-        [0, 1],
-        [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]
-      );
-      point.y += map(
-        noise(noiseY),
-        [0, 1],
-        [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]
-      );
-      point.z += map(
-        noise(noiseZ),
-        [0, 1],
-        [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]
-      );
+      point.x += map(noise(noiseX), [0, 1], [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]);
+      point.y += map(noise(noiseY), [0, 1], [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]);
+      point.z += map(noise(noiseZ), [0, 1], [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]);
 
       noiseX += this.parameters.noiseXincrement;
       noiseY += this.parameters.moiseYincrement;

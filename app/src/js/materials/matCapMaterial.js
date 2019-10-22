@@ -1,6 +1,6 @@
 "use strict";
 
-var THREE = require("three");
+import * as THREE from "three";
 
 var sphereEnvMapShader = new THREE.ShaderMaterial({
   uniforms: {

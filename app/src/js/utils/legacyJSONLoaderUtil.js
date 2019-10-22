@@ -2,7 +2,8 @@
  * @author mrdoob / http://mrdoob.com/
  * @author alteredq / http://alteredqualia.com/
  */
-var THREE = require("three");
+const THREE = require("three");
+
 THREE.LegacyJSONLoader = (function() {
   function LegacyJSONLoader(manager) {
     if (typeof manager === "boolean") {

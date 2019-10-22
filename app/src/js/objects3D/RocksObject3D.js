@@ -1,6 +1,6 @@
 "use strict";
 
-var THREE = require("three");
+const THREE = require("three");
 require("../utils/legacyJSONLoaderUtil");
 import { TweenLite } from "gsap/TweenMax";
 

@@ -7,15 +7,12 @@ import LookAtField from "../objects3D/LookAtFieldObject3D";
 
 var endSection = new Section("end");
 
-var text = new TextPanel(
-  "T  H  A  N  K  S \n F  O  R    W  A  T  C  H  I  N  G",
-  {
-    align: "center",
-    style: "",
-    size: 50,
-    lineSpacing: 40
-  }
-);
+var text = new TextPanel("T  H  A  N  K  S \n F  O  R    W  A  T  C  H  I  N  G", {
+  align: "center",
+  style: "",
+  size: 50,
+  lineSpacing: 40
+});
 endSection.add(text.el);
 
 var field = new LookAtField({

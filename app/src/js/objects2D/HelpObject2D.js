@@ -1,7 +1,5 @@
 "use strict";
 
-var jQuery = require("jquery");
-
 import Slider from "../libs/sliderLib";
 
 import Layout from "./LayoutObject2D";

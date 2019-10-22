@@ -1,6 +1,6 @@
 "use strict";
 
-var THREE = require("three");
+import * as THREE from "three";
 
 var glitch = new THREE.ShaderMaterial({
   uniforms: {
@@ -8,11 +8,9 @@ var glitch = new THREE.ShaderMaterial({
     resolution: { type: "v2", value: new THREE.Vector2(10, 10) },
     fInverseViewportDimensions: { type: "v2", value: new THREE.Vector2(10, 10) }
   },
-  vertexShader: [
-    "void main () {",
-    "gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);",
-    "}"
-  ].join("\n"),
+  vertexShader: ["void main () {", "gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);", "}"].join(
+    "\n"
+  ),
   fragmentShader: [
     "float time;",
     "uniform vec2 resolution;",

@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import random from "../utils/randomUtil";
@@ -44,10 +43,7 @@ export default function LookAtField(options) {
     triangleCopy.rotation.y = random(0, 2 * Math.PI);
     triangleCopy.rotation.z = random(0, 2 * Math.PI);
 
-    triangleCopy.scale.x = triangleCopy.scale.y = triangleCopy.scale.z = random(
-      0.6,
-      1
-    );
+    triangleCopy.scale.x = triangleCopy.scale.y = triangleCopy.scale.z = random(0.6, 1);
 
     triangleCopy.lookAt(center);
 

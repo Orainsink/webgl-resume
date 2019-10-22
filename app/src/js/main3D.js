@@ -1,4 +1,5 @@
 "use strict";
+
 import "../less/main3D.less";
 require("./polyfills/animFramePolyfill");
 require("./polyfills/bindPolyfill");
@@ -6,7 +7,6 @@ require("./polyfills/indexOfPolyfill");
 
 import { TweenLite } from "gsap/all";
 
-var jQuery = require("jquery");
 TweenLite.defaultEase = window.Quad.easeInOut;
 
 import "./libs/waypointLib";

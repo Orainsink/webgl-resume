@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import random from "../utils/randomUtil";
@@ -25,8 +24,7 @@ function Grid(options) {
   this.parameters = jQuery.extend(Grid.defaultOptions, options);
 
   this.width = (this.parameters.divisionsX - 1) * this.parameters.divisionsSize;
-  this.height =
-    (this.parameters.divisionsY - 1) * this.parameters.divisionsSize;
+  this.height = (this.parameters.divisionsY - 1) * this.parameters.divisionsSize;
 
   var group = new THREE.Object3D();
 

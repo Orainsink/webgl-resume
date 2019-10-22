@@ -1,7 +1,5 @@
 "use strict";
 
-var jQuery = require("jquery");
-
 import Events from "../classes/EventsClass";
 
 /**
@@ -148,9 +146,7 @@ var APP = (function() {
           }
         }
 
-        $heads
-          .stop()
-          .animate(props, { duration: durations[0], easing: "easeInOutCubic" });
+        $heads.stop().animate(props, { duration: durations[0], easing: "easeInOutCubic" });
         $tails.stop().animate(props, {
           duration: durations[1],
           easing: "easeInOutCubic",

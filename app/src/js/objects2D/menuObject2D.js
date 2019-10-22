@@ -1,6 +1,5 @@
 "use strict";
 
-var jQuery = require("jquery");
 require("jquery-ui/ui/effect.js");
 
 /**

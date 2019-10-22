@@ -1,6 +1,6 @@
 "use strict";
 
-var THREE = require("three");
+import * as THREE from "three";
 
 /**
  * Basic material that accepts vec4 as vertices colors (rgba).

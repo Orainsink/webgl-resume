@@ -2,7 +2,7 @@
 
 "use strict";
 
-var jQuery = require("jquery");
+const jQuery = require("jquery");
 
 import debounce from "../utils/debounceUtil";
 
@@ -43,9 +43,7 @@ export default (function($) {
         var $el = $(this);
 
         var height = parseInt($el.outerHeight());
-        var top = isInContainer
-          ? parseInt($el.position().top) + scrollTop
-          : parseInt($el.offset().top);
+        var top = isInContainer ? parseInt($el.position().top) + scrollTop : parseInt($el.offset().top);
 
         $el.attr({ "data-height": height, "data-top": top });
       });

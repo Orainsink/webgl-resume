@@ -7,7 +7,8 @@ require("./polyfills/animFramePolyfill");
 require("./polyfills/bindPolyfill");
 require("./polyfills/indexOfPolyfill");
 
-var jQuery = require("jquery");
+// import jQuery from "jquery";
+
 var skrollr = require("skrollr");
 import "./libs/waypointLib";
 
@@ -62,9 +63,7 @@ jQuery(function() {
     var $tailsSections = $tails.find(".tails__section");
 
     // prepare els
-    $tailsSections
-      .find(".tails__section__el")
-      .animate({ opacity: 0, y: 100 }, 0);
+    $tailsSections.find(".tails__section__el").animate({ opacity: 0, y: 100 }, 0);
 
     var waypoint = $tailsSections.waypoint({
       offset: 30,

@@ -10,15 +10,12 @@ var waveSection = new Section("wave");
 var wave = new Wave();
 waveSection.add(wave.el);
 
-var text = new TextPanel(
-  "E  Y  E  S    O  N    T  H  E \n H  O  R  I  Z  O  N",
-  {
-    align: "center",
-    style: "",
-    size: 50,
-    lineSpacing: 40
-  }
-);
+var text = new TextPanel("E  Y  E  S    O  N    T  H  E \n H  O  R  I  Z  O  N", {
+  align: "center",
+  style: "",
+  size: 50,
+  lineSpacing: 40
+});
 text.el.position.y = 10;
 text.el.rotation.x = 0.2;
 waveSection.add(text.el);

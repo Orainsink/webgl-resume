@@ -3,8 +3,7 @@
 
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import Events from "../classes/EventsClass";
@@ -47,12 +46,7 @@ function HeightMap(options) {
 
   var group = new THREE.Object3D();
 
-  this.geometry = new THREE.PlaneGeometry(
-    50,
-    50,
-    this.parameters.divisionsX,
-    this.parameters.divisionsY
-  );
+  this.geometry = new THREE.PlaneGeometry(50, 50, this.parameters.divisionsX, this.parameters.divisionsY);
 
   if (this.parameters.plane) {
     this.plane = this.getPlane();
@@ -158,9 +152,7 @@ HeightMap.prototype.getLines = function() {
       var lineGeometry = new THREE.Geometry();
 
       for (var y = 0; y < this.parameters.divisionsY + 1; y++) {
-        var vertex = this.geometry.vertices[
-          x + (y * this.parameters.divisionsX + y)
-        ];
+        var vertex = this.geometry.vertices[x + (y * this.parameters.divisionsX + y)];
         lineGeometry.vertices.push(vertex);
       }
 
@@ -174,9 +166,7 @@ HeightMap.prototype.getLines = function() {
       var lineGeometry = new THREE.Geometry();
 
       for (var x = 0; x < this.parameters.divisionsX + 1; x++) {
-        var vertex = this.geometry.vertices[
-          y * (this.parameters.divisionsX + 1) + x
-        ];
+        var vertex = this.geometry.vertices[y * (this.parameters.divisionsX + 1) + x];
         lineGeometry.vertices.push(vertex);
 
         if (x === 0) {
@@ -228,8 +218,7 @@ HeightMap.prototype.getIdleTween = function() {
  * @method loadMaps
  */
 HeightMap.prototype.loadMaps = function() {
-  var totalData =
-    (this.parameters.divisionsX + 1) * (this.parameters.divisionsY + 1);
+  var totalData = (this.parameters.divisionsX + 1) * (this.parameters.divisionsY + 1);
   this.data = { default: new Float32Array(totalData) };
 
   var loader = new THREE.ImageLoader();
@@ -299,10 +288,7 @@ HeightMap.prototype.loadMaps = function() {
  * @method applyMap
  */
 HeightMap.prototype.applyMap = function() {
-  var previousName =
-    typeof this.previous === "undefined"
-      ? "default"
-      : this.parameters.maps[this.previous].name;
+  var previousName = typeof this.previous === "undefined" ? "default" : this.parameters.maps[this.previous].name;
 
   var currentName = this.parameters.maps[this.current].name;
 
@@ -317,9 +303,7 @@ HeightMap.prototype.applyMap = function() {
     onUpdate: function() {
       for (var i = 0, j = _this.geometry.vertices.length; i < j; i++) {
         var vertex = _this.geometry.vertices[i];
-        var offset =
-          currentData[i] +
-          (previousData[i] - currentData[i]) * this.target.factor;
+        var offset = currentData[i] + (previousData[i] - currentData[i]) * this.target.factor;
         vertex.z = offset;
       }
 
@@ -357,9 +341,7 @@ HeightMap.prototype.setColors = function() {
         percent = Math.round(percent * 10) / 10;
 
         if (!this.colorsCache[percent]) {
-          this.colorsCache[percent] = this.fromColor
-            .clone()
-            .lerp(this.toColor, percent);
+          this.colorsCache[percent] = this.fromColor.clone().lerp(this.toColor, percent);
         }
 
         line.geometry.colors[k] = this.colorsCache[percent];
@@ -384,9 +366,7 @@ HeightMap.prototype.setColors = function() {
         percent = Math.round(percent * 10) / 10;
 
         if (!this.colorsCache[percent]) {
-          this.colorsCache[percent] = this.fromColor
-            .clone()
-            .lerp(this.toColor, percent);
+          this.colorsCache[percent] = this.fromColor.clone().lerp(this.toColor, percent);
         }
 
         face.vertexColors[k] = this.colorsCache[percent];

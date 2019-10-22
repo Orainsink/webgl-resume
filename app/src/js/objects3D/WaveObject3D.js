@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import loop from "../utils/loopUtil";
@@ -35,9 +34,7 @@ function Wave(options) {
     for (var x = 0; x <= divisionsX; x++) {
       for (var y = 0; y <= divisionsY; y++) {
         var vertex = plane.geometry.vertices[i++];
-        vertex.z =
-          Math.sin((x + 1 + time) * 0.2) * 2 +
-          Math.sin((y + 1 + time) * 0.2) * 5;
+        vertex.z = Math.sin((x + 1 + time) * 0.2) * 2 + Math.sin((y + 1 + time) * 0.2) * 5;
       }
     }
 
@@ -90,9 +87,7 @@ Wave.defaultOptions = {
  * @return {THREE.Mesh}
  */
 Wave.prototype.getPlane = function() {
-  var texture = new THREE.TextureLoader().load(
-    require("Public/img/texture-wave.png")
-  );
+  var texture = new THREE.TextureLoader().load(require("Public/img/texture-wave.png"));
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(20, 20);
 

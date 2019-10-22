@@ -1,7 +1,6 @@
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 
 /**
  * Sprite animation on a mesh using texture's offset
@@ -102,10 +101,7 @@ SPRITE3D.Sprite = function(texture, options) {
   );
 
   this.texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  this.texture.repeat.set(
-    1 / this.parameters.horizontal,
-    1 / this.parameters.vertical
-  );
+  this.texture.repeat.set(1 / this.parameters.horizontal, 1 / this.parameters.vertical);
   this.texture.offset.x = this.texture.offset.y = 1;
 
   this.isPlaying = false;

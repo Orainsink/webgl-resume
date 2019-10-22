@@ -2,8 +2,7 @@
 
 "use strict";
 
-var jQuery = require("jquery");
-var THREE = require("three");
+import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
 import random from "../utils/randomUtil";
@@ -81,10 +80,7 @@ function Galaxy(options) {
   this.el = group;
 
   this.in = function(way) {
-    cache =
-      way === "up"
-        ? { rotationY: -0.6, rotationX: -0.5 }
-        : { rotationY: 0.6, rotationX: -1.5 };
+    cache = way === "up" ? { rotationY: -0.6, rotationX: -0.5 } : { rotationY: 0.6, rotationX: -1.5 };
 
     update();
 
@@ -119,9 +115,7 @@ function Galaxy(options) {
         }
       }
 
-      ring.geometry.colors = ring.geometry.colors.concat(
-        ring.geometry.colors.splice(0, 1)
-      );
+      ring.geometry.colors = ring.geometry.colors.concat(ring.geometry.colors.splice(0, 1));
       ring.geometry.colorsNeedUpdate = true;
     },
     onComplete: loop
