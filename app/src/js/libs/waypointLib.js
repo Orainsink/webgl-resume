@@ -1,12 +1,10 @@
-/* jshint laxbreak: true */
-
 "use strict";
 
+// jQuery lib,need require jquery module instead of using expose-loader
 const jQuery = require("jquery");
-
 import debounce from "../utils/debounceUtil";
 
-export default (function($) {
+(function($) {
   /**
    * Trigger event on element when they enter/leave viewport
    *
@@ -19,7 +17,7 @@ export default (function($) {
    * @requires jQuery, debounce
    */
   $.fn.waypoint = function(options) {
-    var isInContainer = options.$viewport ? true : false;
+    var isInContainer = !!options.$viewport;
 
     var parameters = $.extend(
       {
@@ -43,7 +41,9 @@ export default (function($) {
         var $el = $(this);
 
         var height = parseInt($el.outerHeight());
-        var top = isInContainer ? parseInt($el.position().top) + scrollTop : parseInt($el.offset().top);
+        var top = isInContainer
+          ? parseInt($el.position().top) + scrollTop
+          : parseInt($el.offset().top);
 
         $el.attr({ "data-height": height, "data-top": top });
       });

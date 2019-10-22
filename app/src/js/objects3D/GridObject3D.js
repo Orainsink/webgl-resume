@@ -24,7 +24,8 @@ function Grid(options) {
   this.parameters = jQuery.extend(Grid.defaultOptions, options);
 
   this.width = (this.parameters.divisionsX - 1) * this.parameters.divisionsSize;
-  this.height = (this.parameters.divisionsY - 1) * this.parameters.divisionsSize;
+  this.height =
+    (this.parameters.divisionsY - 1) * this.parameters.divisionsSize;
 
   var group = new THREE.Object3D();
 
@@ -39,8 +40,8 @@ function Grid(options) {
       pointsGeometry.vertices.push(vertices[i][2]);
     }
 
-    var pointsMaterial = new THREE.PointCloudMaterial({ size: 0.2 });
-    var points = new THREE.PointCloud(pointsGeometry, pointsMaterial);
+    var pointsMaterial = new THREE.PointsMaterial({ size: 0.2 });
+    var points = new THREE.Points(pointsGeometry, pointsMaterial);
 
     group.add(points);
   }

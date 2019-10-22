@@ -38,6 +38,7 @@ import gravitySection from "./sections/gravitySection";
 import citySection from "./sections/citySection";
 import endSection from "./sections/endSection";
 
+console.log("PC page");
 jQuery(function() {
   HASH.replacePlaceholders();
 

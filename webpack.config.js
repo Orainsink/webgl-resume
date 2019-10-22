@@ -2,7 +2,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-  mode: "development",
   // 本地测试服务器配置
   devServer: {
     contentBase: path.join(__dirname, "app"),

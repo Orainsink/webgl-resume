@@ -84,13 +84,13 @@ Grid.prototype.render = function() {
   var group = new THREE.Object3D();
 
   // points
-  var pointCloudMaterial = new THREE.PointCloudMaterial({
+  var pointsMaterial = new THREE.PointsMaterial({
     size: 0.3
   });
-  var pointCloud = new THREE.PointCloud(this.points, pointCloudMaterial);
+  var points = new THREE.Points(this.points, pointsMaterial);
 
   if (this.parameters.points) {
-    group.add(pointCloud);
+    group.add(points);
   }
 
   // lines
@@ -106,7 +106,9 @@ Grid.prototype.render = function() {
     var hLineGeometry = new THREE.Geometry();
 
     for (var j = 0; j < this.parameters.stepsX; j++) {
-      hLineGeometry.vertices.push(this.points.vertices[i + j * this.parameters.stepsY]);
+      hLineGeometry.vertices.push(
+        this.points.vertices[i + j * this.parameters.stepsY]
+      );
     }
 
     var hLine = new THREE.Line(hLineGeometry, lineMaterial);
@@ -119,7 +121,9 @@ Grid.prototype.render = function() {
     var vLineGeometry = new THREE.Geometry();
 
     for (var l = 0; l < this.parameters.stepsY; l++) {
-      vLineGeometry.vertices.push(this.points.vertices[k * this.parameters.stepsY + l]);
+      vLineGeometry.vertices.push(
+        this.points.vertices[k * this.parameters.stepsY + l]
+      );
     }
 
     var vLine = new THREE.Line(vLineGeometry, lineMaterial);
@@ -130,7 +134,7 @@ Grid.prototype.render = function() {
   group.add(lines);
 
   // exports
-  this.points = pointCloud;
+  this.points = points;
   this.lines = lines;
   this.el = group;
 };
@@ -147,7 +151,8 @@ Grid.prototype.applyForce = function(center, strength) {
   for (var i = 0, j = this.points.geometry.vertices.length; i < j; i++) {
     var dist = this.points.geometry.vertices[i].distanceTo(center);
 
-    this.points.geometry.vertices[i].z -= (strength * 10) / Math.sqrt(dist * 2) - strength * 2;
+    this.points.geometry.vertices[i].z -=
+      (strength * 10) / Math.sqrt(dist * 2) - strength * 2;
   }
   this.points.geometry.verticesNeedUpdate = true;
 

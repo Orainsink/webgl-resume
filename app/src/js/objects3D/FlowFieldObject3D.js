@@ -42,7 +42,7 @@ function FlowField(points, options) {
 
   var triangleGeometry = new THREE.TetrahedronGeometry(3);
   var triangleMaterial = new THREE.MeshLambertMaterial({
-    shading: THREE.FlatShading
+    flatShading: THREE.FlatShading
   });
   var triangleMesh = new THREE.Mesh(triangleGeometry, triangleMaterial);
 
@@ -99,7 +99,7 @@ FlowField.defaultOptions = {
  * @return {Object}
  */
 FlowField.prototype.getCurves = function(points) {
-  var main = new THREE.SplineCurve3(points);
+  var main = new THREE.CatmullRomCurve3(points);
 
   var subsPoints = main.getPoints(this.parameters.subsPrecision);
 
@@ -114,9 +114,21 @@ FlowField.prototype.getCurves = function(points) {
     for (var j = 0, k = subsPoints.length; j < k; j++) {
       var point = subsPoints[j].clone();
 
-      point.x += map(noise(noiseX), [0, 1], [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]);
-      point.y += map(noise(noiseY), [0, 1], [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]);
-      point.z += map(noise(noiseZ), [0, 1], [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]);
+      point.x += map(
+        noise(noiseX),
+        [0, 1],
+        [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]
+      );
+      point.y += map(
+        noise(noiseY),
+        [0, 1],
+        [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]
+      );
+      point.z += map(
+        noise(noiseZ),
+        [0, 1],
+        [-this.parameters.subsAmplitude, this.parameters.subsAmplitude]
+      );
 
       noiseX += this.parameters.noiseXincrement;
       noiseY += this.parameters.moiseYincrement;
@@ -125,7 +137,7 @@ FlowField.prototype.getCurves = function(points) {
       newPoints.push(point);
     }
 
-    subs.push(new THREE.SplineCurve3(newPoints));
+    subs.push(new THREE.CatmullRomCurve3(newPoints));
   }
 
   return {
@@ -138,7 +150,7 @@ FlowField.prototype.getCurves = function(points) {
  * Get lines
  *
  * @method getLines
- * @param {THREE.SplineCurve3} [main] Main curve
+ * @param {THREE.CatmullRomCurve3} [main] Main curve
  * @param {Array} [subs] Sub curves
  * @return {Array}
  */

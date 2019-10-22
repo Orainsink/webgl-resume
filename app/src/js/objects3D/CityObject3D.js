@@ -94,7 +94,6 @@ City.prototype.processObj = function(data) {
       var percent = Math.floor((vertex.y * 100) / height) - 10;
       color = new THREE.Vector4(0.7, 0.7, 0.7, percent / 100);
     }
-    console.log("sas", localOutlineMaterial);
     // TODO add customColor
     // localOutlineMaterial.attributes.customColor.value[i] = color;
   }

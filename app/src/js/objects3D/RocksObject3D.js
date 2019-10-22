@@ -26,7 +26,7 @@ function Rocks() {
   var rocksMaterial = new THREE.MeshLambertMaterial({
     color: "#0a0a0a",
     side: THREE.DoubleSide,
-    shading: THREE.FlatShading
+    flatShading: THREE.FlatShading
   });
 
   var fromColor = new THREE.Color("#0a0a0a");

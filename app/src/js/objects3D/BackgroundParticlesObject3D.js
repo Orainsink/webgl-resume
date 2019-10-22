@@ -21,7 +21,7 @@ import random from "../utils/randomUtil";
 function BackgroundParticles(options) {
   var parameters = jQuery.extend(BackgroundParticles.defaultOptions, options);
 
-  var material = new THREE.PointCloudMaterial({
+  var material = new THREE.PointsMaterial({
     size: parameters.particleSize
   });
 
@@ -39,7 +39,7 @@ function BackgroundParticles(options) {
 
   var group = new THREE.Object3D();
 
-  group.add(new THREE.PointCloud(geometry, material));
+  group.add(new THREE.Points(geometry, material));
 
   if (parameters.strips) {
     var stripsGeometry = new THREE.Geometry();
@@ -49,7 +49,11 @@ function BackgroundParticles(options) {
 
     for (var i = 0; i < parameters.stripsCount; i++) {
       var stripMesh = new THREE.Mesh(stripGeometry, stripMaterial);
-      stripMesh.position.set(random(-50, 50), random(parameters.rangeY[0], parameters.rangeY[1]), random(-50, 0));
+      stripMesh.position.set(
+        random(-50, 50),
+        random(parameters.rangeY[0], parameters.rangeY[1]),
+        random(-50, 0)
+      );
 
       stripMesh.scale.set(random(0.5, 1), random(0.1, 1), 1);
 

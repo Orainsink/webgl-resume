@@ -137,7 +137,7 @@ THREE.LegacyJSONLoader = (function() {
               case "specularCoef":
                 json.shininess = value;
                 break;
-              case "shading":
+              case "flatShading":
                 if (value.toLowerCase() === "basic")
                   json.type = "MeshBasicMaterial";
                 if (value.toLowerCase() === "phong")

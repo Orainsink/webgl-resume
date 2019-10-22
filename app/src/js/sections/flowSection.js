@@ -9,7 +9,11 @@ import TextPanel from "../objects3D/TextPanelObject3D";
 
 var flowSection = new Section("flow");
 
-var points = [new THREE.Vector3(0, 50, 20), new THREE.Vector3(20, 0, -10), new THREE.Vector3(-20, -100, 0)];
+var points = [
+  new THREE.Vector3(0, 50, 20),
+  new THREE.Vector3(20, 0, -10),
+  new THREE.Vector3(-20, -100, 0)
+];
 
 var field = new FlowField(points, {
   subsAmplitude: 50,

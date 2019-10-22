@@ -27,7 +27,7 @@ export default function LookAtField(options) {
   var triangleGeometry = new THREE.TetrahedronGeometry(3);
 
   var triangleMaterial = new THREE.MeshLambertMaterial({
-    shading: THREE.FlatShading
+    flatShading: THREE.FlatShading
   });
   var triangleMesh = new THREE.Mesh(triangleGeometry, triangleMaterial);
 
@@ -43,7 +43,10 @@ export default function LookAtField(options) {
     triangleCopy.rotation.y = random(0, 2 * Math.PI);
     triangleCopy.rotation.z = random(0, 2 * Math.PI);
 
-    triangleCopy.scale.x = triangleCopy.scale.y = triangleCopy.scale.z = random(0.6, 1);
+    triangleCopy.scale.x = triangleCopy.scale.y = triangleCopy.scale.z = random(
+      0.6,
+      1
+    );
 
     triangleCopy.lookAt(center);
 
