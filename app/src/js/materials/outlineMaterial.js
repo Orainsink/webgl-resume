@@ -8,7 +8,7 @@ import * as THREE from "three";
  * @attribute {Object} [customColor]
  * @attribute {Array} [customColor.value]
  */
-var outlineShader = new THREE.ShaderMaterial({
+let outlineShader = new THREE.ShaderMaterial({
   uniforms: {
     time: { type: "f", value: 1 }
   },

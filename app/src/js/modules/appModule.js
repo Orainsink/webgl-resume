@@ -10,18 +10,18 @@ import Events from "../classes/EventsClass";
  * @event [heads:invisible] Heads is completely out of the viewport
  * @requires jQuery, Events
  */
-var APP = (function() {
-  var instance;
+const APP = (function() {
+  let instance;
 
   function init() {
-    var events = new Events();
+    const events = new Events();
 
-    var $trigger = jQuery(".trigger");
-    var $heads = jQuery(".heads");
-    var $tails = jQuery(".tails");
-    var $infoArrow = $heads.find(".trigger__info--arrow");
-    var $infoHeads = $heads.find(".trigger__info--heads");
-    var $infoTails = $heads.find(".trigger__info--tails");
+    const $trigger = jQuery(".trigger");
+    const $heads = jQuery(".heads");
+    const $tails = jQuery(".tails");
+    const $infoArrow = $heads.find(".trigger__info--arrow");
+    const $infoHeads = $heads.find(".trigger__info--heads");
+    const $infoTails = $heads.find(".trigger__info--tails");
 
     // reset scroll
     jQuery("body")
@@ -29,12 +29,12 @@ var APP = (function() {
       .animate({ scrollTop: 0 }, 2000);
 
     function navigation() {
-      var isOpen = false;
-      var isSliding = false;
+      let isOpen = false;
+      let isSliding = false;
 
       // Update the location of the trigger area
       function updateTrigger() {
-        var properties;
+        let properties;
 
         if (isOpen) {
           properties = { top: 0, bottom: "auto" };
@@ -50,8 +50,8 @@ var APP = (function() {
           return false;
         }
 
-        var to;
-        var y;
+        let to;
+        let y;
 
         if (isOpen) {
           to = "heads";
@@ -63,8 +63,8 @@ var APP = (function() {
           $infoArrow.stop().animate({ opacity: 0, bottom: 20 }, 500);
         }
 
-        var props = { y: y + "%" };
-
+        const props = { top: y + "%" };
+        console.log(props);
         $heads.stop().animate(props, { duration: 400, easing: "swing" });
         $tails.stop().animate(props, { duration: 400, easing: "swing" });
       }
@@ -74,8 +74,8 @@ var APP = (function() {
           return false;
         }
 
-        var to;
-        var y;
+        let to;
+        let y;
 
         if (isOpen) {
           to = "heads";
@@ -86,7 +86,7 @@ var APP = (function() {
           $infoArrow.stop().animate({ opacity: 0.5, bottom: 0 }, 500);
         }
 
-        var props = { y: y + "%" };
+        const props = { top: y + "%" };
 
         function onComplete() {
           if (to === "heads") {
@@ -106,9 +106,9 @@ var APP = (function() {
       function slide(callback) {
         isSliding = true;
 
-        var to;
-        var y;
-        var durations;
+        let to;
+        let y;
+        let durations;
 
         if (isOpen) {
           to = "heads";
@@ -126,7 +126,7 @@ var APP = (function() {
 
         events.trigger("slideBegin", { to: to });
 
-        var props = { y: y + "%" };
+        const props = { top: y + "%" };
 
         function onComplete() {
           isSliding = false;
@@ -146,7 +146,9 @@ var APP = (function() {
           }
         }
 
-        $heads.stop().animate(props, { duration: durations[0], easing: "easeInOutCubic" });
+        $heads
+          .stop()
+          .animate(props, { duration: durations[0], easing: "easeInOutCubic" });
         $tails.stop().animate(props, {
           duration: durations[1],
           easing: "easeInOutCubic",
@@ -229,4 +231,6 @@ var APP = (function() {
   };
 })();
 
-export default APP.getInstance();
+const app = APP.getInstance();
+
+export default app;

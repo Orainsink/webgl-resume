@@ -2,15 +2,17 @@
 
 import * as THREE from "three";
 
-var glitch = new THREE.ShaderMaterial({
+let glitch = new THREE.ShaderMaterial({
   uniforms: {
     time: { type: "f", value: 10.0 },
     resolution: { type: "v2", value: new THREE.Vector2(10, 10) },
     fInverseViewportDimensions: { type: "v2", value: new THREE.Vector2(10, 10) }
   },
-  vertexShader: ["void main () {", "gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);", "}"].join(
-    "\n"
-  ),
+  vertexShader: [
+    "void main () {",
+    "gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);",
+    "}"
+  ].join("\n"),
   fragmentShader: [
     "float time;",
     "uniform vec2 resolution;",

@@ -11,20 +11,20 @@
  * @return {Function}
  */
 function debounce(callback, delay, immediate) {
-  var timeout;
+  let timeout;
 
   return function() {
-    var context = this;
-    var args = arguments;
+    const context = this;
+    const args = arguments;
 
-    var callLater = function() {
+    const callLater = function() {
       timeout = null;
       if (!immediate) {
         callback.apply(context, args);
       }
     };
 
-    var callNow = immediate && !timeout;
+    const callNow = immediate && !timeout;
     window.clearTimeout(timeout);
     timeout = window.setTimeout(callLater, delay);
     if (callNow) {

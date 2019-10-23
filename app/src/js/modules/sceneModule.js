@@ -2,15 +2,10 @@
 
 import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
-
 import SPRITE3D from "../libs/sprite3DLib";
-
 import SOUNDS from "./soundsModule";
-
 import Events from "../classes/EventsClass";
-
 import MapObj from "../objects2D/MapObject2D";
-
 import BackgroundParticles from "../objects3D/BackgroundParticlesObject3D";
 import BackgroundLines from "../objects3D/BackgroundLinesObject3D";
 

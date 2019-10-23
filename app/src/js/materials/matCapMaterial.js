@@ -2,7 +2,7 @@
 
 import * as THREE from "three";
 
-var sphereEnvMapShader = new THREE.ShaderMaterial({
+let sphereEnvMapShader = new THREE.ShaderMaterial({
   uniforms: {
     map: { type: "t", value: null }
   },
