@@ -61,7 +61,7 @@ import debounce from "../utils/debounceUtil";
     }
 
     var onScroll = debounce(function onScroll() {
-      scrollTop = $(this).scrollTop();
+      scrollTop = $(this).scrollTop() || 0;
 
       if (parameters.startAt && scrollTop < parameters.startAt) {
         return false;

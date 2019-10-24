@@ -136,7 +136,6 @@ const APP = (function() {
 
         function onComplete() {
           isSliding = false;
-          console.log("oncomplete", to);
 
           events.trigger("slideComplete", { to: to });
 
