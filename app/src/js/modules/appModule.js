@@ -63,10 +63,14 @@ const APP = (function() {
           $infoArrow.stop().animate({ opacity: 0, bottom: 20 }, 500);
         }
 
-        const props = { top: y + "%" };
-        console.log(props);
-        $heads.stop().animate(props, { duration: 400, easing: "swing" });
-        $tails.stop().animate(props, { duration: 400, easing: "swing" });
+        $heads.stop().css({
+          transform: `translateY(${y}%)`,
+          transition: "all .4s cubic-bezier(0.02, 0.01, 0.47, 1)"
+        });
+        $tails.stop().css({
+          transform: `translateY(${y}%)`,
+          transition: "all .4s cubic-bezier(0.02, 0.01, 0.47, 1)"
+        });
       }
 
       function close() {
@@ -86,19 +90,23 @@ const APP = (function() {
           $infoArrow.stop().animate({ opacity: 0.5, bottom: 0 }, 500);
         }
 
-        const props = { top: y + "%" };
-
         function onComplete() {
           if (to === "heads") {
             events.trigger("heads:invisible");
           }
         }
+        setTimeout(() => {
+          onComplete();
+        }, 400);
 
-        $heads.stop().animate(props, { duration: 400, easing: "swing" });
-        $tails.stop().animate(props, {
-          duration: 400,
-          easing: "swing",
-          complete: onComplete
+        $heads.stop().css({
+          transform: `translateY(${y}%)`,
+          transition: "all .4s cubic-bezier(0.02, 0.01, 0.47, 1)"
+        });
+
+        $tails.stop().css({
+          transform: `translateY(${y}%)`,
+          transition: "all .4s"
         });
       }
 
@@ -126,10 +134,9 @@ const APP = (function() {
 
         events.trigger("slideBegin", { to: to });
 
-        const props = { top: y + "%" };
-
         function onComplete() {
           isSliding = false;
+          console.log("oncomplete", to);
 
           events.trigger("slideComplete", { to: to });
 
@@ -146,15 +153,21 @@ const APP = (function() {
           }
         }
 
-        $heads
-          .stop()
-          .animate(props, { duration: durations[0], easing: "easeInOutCubic" });
-        $tails.stop().animate(props, {
-          duration: durations[1],
-          easing: "easeInOutCubic",
-          complete: onComplete
+        setTimeout(() => {
+          onComplete();
+        }, 400);
+        $heads.stop().css({
+          transform: `translateY(${y}%)`,
+          transition: `all ${
+            durations[0]
+          }ms cubic-bezier(0.645, 0.045, 0.355, 1)`
         });
-
+        $tails.stop().css({
+          transform: `translateY(${y}%)`,
+          transition: `all ${
+            durations[1]
+          }ms cubic-bezier(0.645, 0.045, 0.355, 1)`
+        });
         isOpen = !isOpen;
 
         updateTrigger();

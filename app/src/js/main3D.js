@@ -371,7 +371,11 @@ jQuery(function() {
   var wireframe = new Wireframe(jQuery(".wireframe"));
 
   var $tailsSections = jQuery(".tails__section");
-  $tailsSections.find(".tails__section__el").animate({ opacity: 0, y: 100 }, 0);
+  // $tailsSections.find(".tails__section__el").animate({ opacity: 0, y: 100 }, 0);
+  $tailsSections.find(".tails__section__el").css({
+    opacity: 0,
+    transform: `translateY(100%)`
+  });
 
   var waypoint = $tailsSections.waypoint({
     $viewport: jQuery(".tails"),
@@ -385,13 +389,20 @@ jQuery(function() {
       return false;
     }
 
+    // TODO find the reason why it dosen't work
+    // it seems that somgthing's wrong in waypointLib.js
+
     jQuery(this)
       .find(".tails__section__el")
       .each(function(i) {
         jQuery(this)
           .stop()
           .delay(i * 100)
-          .animate({ opacity: 1, y: 0 }, 500);
+          .css({
+            opacity: 1,
+            transform: `translateY(0%)`,
+            transition: `all 500ms`
+          });
       });
 
     $el.attr("data-appeared", true);

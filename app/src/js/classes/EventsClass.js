@@ -26,13 +26,13 @@ class Events {
       this.events[name] = [];
     }
 
-    let id = (++this.id).toString();
+    let id = (++this.id).toString() - 0;
 
     this.events[name].push({
       id: id,
       callback: callback
     });
-    // TODO wonder id should be string or num
+
     return id;
   }
 
@@ -47,6 +47,7 @@ class Events {
     if (!this.events[name]) {
       return false;
     }
+    console.log("event", name, data);
 
     let suscribers = this.events[name];
     for (let i = 0, j = suscribers.length; i < j; i++) {
