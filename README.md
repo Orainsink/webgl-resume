@@ -1,6 +1,10 @@
-# webGL-polyfile
+# webgl-resume
 
-一个 webGl 和 webpack 的学习实践.
+一个 webGl, Gulp 和 webpack 的学习实践
+
+基于 JQuery 和 Three.js
+
+模型: Maya
 
 源码 fork 自  https://github.com/vaalentin/2015 
 
@@ -13,15 +17,15 @@
 - [x] 重构文件目录结构
 - [x] 更新所有依赖的版本为最新版本, 替换已被废弃的包
 - [x] 测试跑通代码, 修复部分依赖更新导致的 bug
-
+- [x] 修复控制按钮的bug
+- [x] 修复遗留的资源路径错误
+- [x] 修复head切换到trial过程中动画的一些问题
 **Todo**
 
 - [ ] 打包 index.html, 优化js加载的逻辑
 - [ ] 缩小 vendor.js 的体积, 目前最大的包达到 2M ,绝对有哪里搞错了
 - [ ] 尝试用 GLTFExporter 重新导出模型数据, 废弃老版本的 JSONloader
 - [ ] 由于chrome的策略, 现在不能页面打开就播放音频, 需要添加一个触发音频的按钮
-- [ ] 修复控制按钮的bug
-- [ ] 修复遗留的资源路径错误
 - [ ] 首页动画有bug, 文字不会立即显示, 估计是onload处逻辑出错.
 - [ ] 第4页模型出错
 - [ ] 倒数第二页城市模型边缘光消失, 原因是新版本three.js attribute需要放在geometry内设置
@@ -35,9 +39,9 @@
 # install dependencies
 npm i
 # dev: server will run at localhost:9000
-npm run start
+npm start
 # build dist
-npm run build
+npm build
 ```
 
 **others**
