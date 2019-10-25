@@ -34,7 +34,7 @@ function Rocks() {
 
   var loader = new THREE.LegacyJSONLoader();
   loader.load(
-    "../public/3D/rocks.json",
+    "public/3D/rocks.json",
     function(geometry) {
       var rocks = new THREE.Mesh(geometry, rocksMaterial);
       rocks.position.set(-70, 0, -30);

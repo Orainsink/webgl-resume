@@ -23,7 +23,7 @@ function Face() {
 
   var loader = new THREE.LegacyJSONLoader();
   loader.load(
-    "../public/3D/face-hp.json",
+    "public/3D/face-hp.json",
     function(geometry) {
       var mesh = new THREE.Mesh(geometry, matCap);
       mesh.scale.x = 1.5;

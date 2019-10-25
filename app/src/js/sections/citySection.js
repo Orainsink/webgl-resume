@@ -12,9 +12,9 @@ var city = new City();
 city.addGroup({
   name: "shanghai",
   objs: {
-    ground: "../public/3D/shanghai-grounds.json",
-    buildings: "../public/3D/shanghai-buildings.json",
-    towers: "../public/3D/shanghai-towers.json"
+    ground: "public/3D/shanghai-grounds.json",
+    buildings: "public/3D/shanghai-buildings.json",
+    towers: "public/3D/shanghai-towers.json"
   },
   outline: {
     ground: {
