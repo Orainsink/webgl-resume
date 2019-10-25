@@ -37,9 +37,15 @@ function Beam(options) {
     color: parameters.color
   });
 
-  var bodyTexture = new THREE.TextureLoader().load(require("Public/img/texture-laserBody.png"));
-  var capTexture = new THREE.TextureLoader().load(require("Public/img/texture-laserCap.png"));
-  var flareTexture = new THREE.TextureLoader().load(require("Public/img/texture-laserFlare.png"));
+  var bodyTexture = new THREE.TextureLoader().load(
+    require("Public/img/texture-laserBody.png")
+  );
+  var capTexture = new THREE.TextureLoader().load(
+    require("Public/img/texture-laserCap.png")
+  );
+  var flareTexture = new THREE.TextureLoader().load(
+    require("Public/img/texture-laserFlare.png")
+  );
 
   var lineMaterial = new THREE.LineBasicMaterial({ color: parameters.color });
   var bodyMaterial = baseMaterial.clone();
@@ -55,10 +61,15 @@ function Beam(options) {
   var capGeometry = new THREE.PlaneGeometry(width, width, 1, 1);
   var flareGeometry = new THREE.PlaneGeometry(10, 10, 1, 1);
   var movingFlareGeometry = new THREE.PlaneGeometry(10, 40);
-  var cubeGeometry = new THREE.BoxGeometry(parameters.cubeSize, parameters.cubeSize, parameters.cubeSize);
+  var cubeGeometry = new THREE.BoxGeometry(
+    parameters.cubeSize,
+    parameters.cubeSize,
+    parameters.cubeSize
+  );
 
   // set height 0
-  bodyGeometry.vertices[2].y = bodyGeometry.vertices[3].y = height / 2 + width / 2;
+  bodyGeometry.vertices[2].y = bodyGeometry.vertices[3].y =
+    height / 2 + width / 2;
   bodyGeometry.verticesNeedUpdate = true;
   bodyGeometry.computeBoundingSphere();
 
@@ -101,7 +112,10 @@ function Beam(options) {
 
   // moving flare
   var movingFlareMaterial = flareMaterial.clone();
-  var movingFlareMesh = new THREE.Mesh(movingFlareGeometry, movingFlareMaterial);
+  var movingFlareMesh = new THREE.Mesh(
+    movingFlareGeometry,
+    movingFlareMaterial
+  );
   movingFlareMesh.scale.x = 3;
   group.add(movingFlareMesh);
 

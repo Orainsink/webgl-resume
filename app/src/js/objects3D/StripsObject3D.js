@@ -24,7 +24,10 @@ import random from "../utils/randomUtil";
 function Strip(options) {
   this.parameters = jQuery.extend(Strip.defaultOptions, options);
 
-  this.geometry = new THREE.PlaneGeometry(this.parameters.width, this.parameters.height);
+  this.geometry = new THREE.PlaneGeometry(
+    this.parameters.width,
+    this.parameters.height
+  );
 
   this.el = new THREE.Object3D();
 
@@ -35,7 +38,9 @@ function Strip(options) {
     var y = random(this.parameters.rangeY[0], this.parameters.rangeY[1]);
     var z = random(this.parameters.rangeZ[0], this.parameters.rangeZ[1]);
 
-    var color = this.parameters.colors[random(0, this.parameters.colors.length, true)];
+    var color = this.parameters.colors[
+      random(0, this.parameters.colors.length, true)
+    ];
 
     if (!materials[color]) {
       var material = new THREE.MeshBasicMaterial({

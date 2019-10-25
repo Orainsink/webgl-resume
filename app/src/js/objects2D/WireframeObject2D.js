@@ -91,7 +91,9 @@ Wireframe.prototype.in = function(out) {
     setTimeout(function() {
       $line.css(
         "width",
-        $line.hasClass("wireframe__text__line--incomplete") ? targetIncompleteTextLines : targetTextLines
+        $line.hasClass("wireframe__text__line--incomplete")
+          ? targetIncompleteTextLines
+          : targetTextLines
       );
     }, i * delay);
   });
@@ -136,7 +138,10 @@ Wireframe.prototype.start = function() {
         this.currentPosition = 0;
       }
 
-      this.$leftColumn.css("top", this.parameters.positions[this.currentPosition] + "px");
+      this.$leftColumn.css(
+        "top",
+        this.parameters.positions[this.currentPosition] + "px"
+      );
 
       this.currentPosition++;
     }.bind(this),

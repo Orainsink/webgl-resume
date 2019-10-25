@@ -75,9 +75,14 @@ var HASH =
           var $email = jQuery(".placeholder--email");
 
           var subject = hash ? "?subject=Hi from " + agency : "?subject=Hi";
-          var body = hash ? "&body=Hi V, we like your work and would love to meet you." : "&body=Hi V";
+          var body = hash
+            ? "&body=Hi V, we like your work and would love to meet you."
+            : "&body=Hi V";
 
-          $email.attr("href", ["mailto:valentin.marmonier@gmail.com", subject, body].join(""));
+          $email.attr(
+            "href",
+            ["mailto:valentin.marmonier@gmail.com", subject, body].join("")
+          );
         }
       };
     }

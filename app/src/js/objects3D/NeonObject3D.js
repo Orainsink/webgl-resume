@@ -46,26 +46,30 @@ function Neon(options) {
   // animations
   var _this = this;
 
-  this.idleIntensityTween = TweenLite.to({ projection: 0.08, glow: 0.4 }, random(0.8, 5), {
-    projection: 0.15,
-    glow: 0.7,
-    paused: true,
-    onStart: function() {
-      _this.tube.material.emissive.set(_this.parameters.color);
-    },
-    onUpdate: function() {
-      if (_this.flickering) {
-        return false;
-      }
+  this.idleIntensityTween = TweenLite.to(
+    { projection: 0.08, glow: 0.4 },
+    random(0.8, 5),
+    {
+      projection: 0.15,
+      glow: 0.7,
+      paused: true,
+      onStart: function() {
+        _this.tube.material.emissive.set(_this.parameters.color);
+      },
+      onUpdate: function() {
+        if (_this.flickering) {
+          return false;
+        }
 
-      _this.glow.material.opacity = this.target.glow;
-      if (_this.parameters.projection) {
-        _this.projection.opacity = this.target.opacity;
-      }
-    },
-    onComplete: yoyo,
-    onReverseComplete: yoyo
-  });
+        _this.glow.material.opacity = this.target.glow;
+        if (_this.parameters.projection) {
+          _this.projection.opacity = this.target.opacity;
+        }
+      },
+      onComplete: yoyo,
+      onReverseComplete: yoyo
+    }
+  );
 
   this.idleFlickTween = TweenLite.to({}, random(0.1, 10), {
     paused: true,
@@ -194,7 +198,9 @@ Neon.prototype.getTube = function() {
  * @return {THREE.Mesh}
  */
 Neon.prototype.getGlow = function() {
-  var texture = new THREE.TextureLoader().load(require("Public/img/texture-neonGlow.png"));
+  var texture = new THREE.TextureLoader().load(
+    require("Public/img/texture-neonGlow.png")
+  );
   var material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,
     map: texture,
@@ -238,7 +244,9 @@ Neon.prototype.getGlows = function(glow) {
  * @return {THREE.Mesh}
  */
 Neon.prototype.getProjection = function() {
-  var texture = new THREE.TextureLoader().load(require("Public/img/texture-neonProjection.png"));
+  var texture = new THREE.TextureLoader().load(
+    require("Public/img/texture-neonProjection.png")
+  );
   var material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,
     map: texture,
