@@ -1,5 +1,5 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+var path = require("path");
 
 module.exports = {
   // 本地测试服务器配置
@@ -132,17 +132,6 @@ module.exports = {
             loader: "file-loader",
             options: {
               outputPath: "static/fonts/"
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(mb|obj)$/, // 模型资源
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              outputPath: "static/mb/"
             }
           }
         ]

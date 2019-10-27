@@ -20,10 +20,11 @@
 - [x] 修复控制按钮的bug
 - [x] 修复遗留的资源路径错误
 - [x] 修复head切换到trial过程中动画的一些问题
+- [x] 缩小 vendor.js 的体积
+- [ ] ~~打包 index.html, 优化js加载的逻辑(用htmlwebpackplugin打包html,多对多,发现没打包进去vendor)~~
+
 **Todo**
 
-- [ ] 打包 index.html, 优化js加载的逻辑
-- [ ] 缩小 vendor.js 的体积, 目前最大的包达到 2M ,绝对有哪里搞错了
 - [ ] 尝试用 GLTFExporter 重新导出模型数据, 废弃老版本的 JSONloader
 - [ ] 由于chrome的策略, 现在不能页面打开就播放音频, 需要添加一个触发音频的按钮
 - [ ] 首页动画有bug, 文字不会立即显示, 估计是onload处逻辑出错.

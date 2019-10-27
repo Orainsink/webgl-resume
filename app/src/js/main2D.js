@@ -1,5 +1,3 @@
-/* jshint laxbreak: true */
-
 "use strict";
 
 import "../less/main2D.less";

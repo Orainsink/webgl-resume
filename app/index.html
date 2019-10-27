@@ -5,20 +5,20 @@
     <title> Hello I'm V </title>
     <link rel="image_src" href="http://vaalentin.github.io/2015/app/public/img/preview.jpg" />
     <meta name="description" content="A french Creative / Front end developer who loves to experiment, iterate and build premium experiences." />
-    <link rel="apple-touch-icon" sizes="57x57" href="./public/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./public/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./public/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./public/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./public/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./public/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./public/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./public/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./public/favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="./public/favicons/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="./public/favicons/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="./public/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="./public/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="./public/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon" sizes="57x57" href="public/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="public/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="public/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="public/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="public/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="public/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="public/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="public/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="public/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="public/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="public/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="public/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="public/favicons/favicon-32x32.png" sizes="32x32">
     <meta name="msapplication-TileColor" content="#2d89ef">
     <meta name="msapplication-TileImage" content="./public/favicons/mstile-144x144.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,6 +48,7 @@
             background-color: #fff;
         }
     </style>
+
 </head>
 <body>
 <div class="loader">
@@ -63,11 +64,11 @@
     console.log("More information and source code can be found here: https://github.com/Orainsink/webgl-polyfile");
     console.log("And the original author: https://github.com/vaalentin/2015");
     // disable console
-    /*if (!window.console) { window.console = {}; }
+    if (!window.console) { window.console = {}; }
     var methods = ['log', 'debug', 'warn', 'info'];
     for (var i = 0; i < methods.length; i++){
       console[methods[i]] = function () {};
-    }*/
+    }
 
     // features
     function mobile () {
@@ -105,8 +106,8 @@
       "./dist/vendors~main_3D.js",
     ];
 
-    // dev 配置
-/*          var js_2D = [
+    /*// dev 配置
+          var js_2D = [
             "./dist/main_2D.js",
             "./dist/main_2D~main_3D.js",
             "./dist/vendors~main_2D.js",
