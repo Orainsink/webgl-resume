@@ -199,7 +199,7 @@ Neon.prototype.getTube = function() {
  */
 Neon.prototype.getGlow = function() {
   var texture = new THREE.TextureLoader().load(
-    require("Public/img/texture-neonGlow.png")
+    require("Assets/img/texture-neonGlow.png")
   );
   var material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,
@@ -245,7 +245,7 @@ Neon.prototype.getGlows = function(glow) {
  */
 Neon.prototype.getProjection = function() {
   var texture = new THREE.TextureLoader().load(
-    require("Public/img/texture-neonProjection.png")
+    require("Assets/img/texture-neonProjection.png")
   );
   var material = new THREE.MeshBasicMaterial({
     side: THREE.DoubleSide,

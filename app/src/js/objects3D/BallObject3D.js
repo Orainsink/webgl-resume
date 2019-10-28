@@ -17,10 +17,10 @@ import glitchMaterial from "../materials/glitchMaterial";
  */
 function Ball() {
   var texture = new THREE.TextureLoader().load(
-    require("Public/img/texture-ball.png")
+    require("Assets/img/texture-ball.png")
   );
   var textureAlpha = new THREE.TextureLoader().load(
-    require("Public/img/texture-ballAlpha.png")
+    require("Assets/img/texture-ballAlpha.png")
   );
   texture.wrapS = textureAlpha.wrapS = THREE.RepeatWrapping;
   texture.wrapT = textureAlpha.wrapT = THREE.RepeatWrapping;

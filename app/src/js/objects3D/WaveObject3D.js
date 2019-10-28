@@ -90,7 +90,7 @@ Wave.defaultOptions = {
  */
 Wave.prototype.getPlane = function() {
   var texture = new THREE.TextureLoader().load(
-    require("Public/img/texture-wave.png")
+    require("Assets/img/texture-wave.png")
   );
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(20, 20);

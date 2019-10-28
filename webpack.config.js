@@ -43,7 +43,8 @@ module.exports = {
     extensions: [".js", ".json", ".jsx", ".less", ".css"],
     alias: {
       Public: path.resolve(__dirname, "app/public"),
-      Src: path.resolve(__dirname, "app/public")
+      Src: path.resolve(__dirname, "app/public"),
+      Assets: path.resolve(__dirname, "app/src/assets")
     }
   },
   // loaders配置

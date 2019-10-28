@@ -8,7 +8,7 @@ import yoyo from "../utils/yoyoUtil";
 
 import matCap from "../materials/matCapMaterial";
 matCap.uniforms.map.value = new THREE.TextureLoader().load(
-  require("Public/img/matCap-shiny.jpg")
+  require("Assets/img/matCap-shiny.jpg")
 );
 
 /**

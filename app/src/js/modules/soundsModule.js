@@ -42,33 +42,33 @@ var SOUNDS = (function() {
 
       background: new Howl({
         src: [
-          require("Public/sounds/background.mp3"),
-          require("Public/sounds/background.ogg"),
-          require("Public/sounds/background.wav")
+          require("Assets/sounds//background.mp3"),
+          require("Assets/sounds//background.ogg"),
+          require("Assets/sounds//background.wav")
         ],
         loop: true,
         volume: 0.5
       }),
       wind: new Howl({
         src: [
-          require("Public/sounds/wind.mp3"),
-          require("Public/sounds/wind.ogg"),
-          require("Public/sounds/wind.wav")
+          require("Assets/sounds//wind.mp3"),
+          require("Assets/sounds//wind.ogg"),
+          require("Assets/sounds//wind.wav")
         ]
       }),
       whitenoise: new Howl({
         src: [
-          require("Public/sounds/whitenoise.mp3"),
-          require("Public/sounds/whitenoise.ogg"),
-          require("Public/sounds/whitenoise.wav")
+          require("Assets/sounds//whitenoise.mp3"),
+          require("Assets/sounds//whitenoise.ogg"),
+          require("Assets/sounds//whitenoise.wav")
         ],
         volume: 0.05
       }),
       neon: new Howl({
         src: [
-          require("Public/sounds/neon.mp3"),
-          require("Public/sounds/neon.ogg"),
-          require("Public/sounds/neon.wav")
+          require("Assets/sounds//neon.mp3"),
+          require("Assets/sounds//neon.ogg"),
+          require("Assets/sounds//neon.wav")
         ],
         volume: 0.05
       })

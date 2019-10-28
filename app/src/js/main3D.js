@@ -46,10 +46,10 @@ jQuery(function() {
   var help = new Help();
   var menu = new Menu();
   var imagesLoader = new ImagesLoader([
-    require("Public/img/texture-ball.png"),
-    require("Public/img/texture-ballAlpha.png"),
-    require("Public/img/sprite-smoke.png"),
-    require("Public/img/sprite-AKQA.png")
+    require("Assets/img/texture-ball.png"),
+    require("Assets/img/texture-ballAlpha.png"),
+    require("Assets/img/sprite-smoke.png"),
+    require("Assets/img/sprite-AKQA.png")
   ]);
 
   // preload

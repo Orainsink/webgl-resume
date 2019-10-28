@@ -19,14 +19,14 @@ function Title() {
   var path;
 
   var sprites = {
-    akqa: require("Public/img/sprite-AKQA.png"),
-    hki: require("Public/img/sprite-HKI.png"),
-    grouek: require("Public/img/sprite-grouek.png"),
-    mediamonks: require("Public/img/sprite-mediamonks.png"),
-    none: require("Public/img/sprite-none.png"),
-    soleilnoir: require("Public/img/sprite-soleilnoir.png"),
-    thread: require("Public/img/sprite-thread.png"),
-    ultranoir: require("Public/img/sprite-ultranoir.png")
+    akqa: require("Assets/img/sprite-AKQA.png"),
+    hki: require("Assets/img/sprite-HKI.png"),
+    grouek: require("Assets/img/sprite-grouek.png"),
+    mediamonks: require("Assets/img/sprite-mediamonks.png"),
+    none: require("Assets/img/sprite-none.png"),
+    soleilnoir: require("Assets/img/sprite-soleilnoir.png"),
+    thread: require("Assets/img/sprite-thread.png"),
+    ultranoir: require("Assets/img/sprite-ultranoir.png")
   };
 
   if (sprites[HASH.hash]) {

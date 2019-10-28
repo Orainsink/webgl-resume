@@ -36,12 +36,12 @@ jQuery(function() {
   var loader = new Loader();
   var menu = new Menu();
   var imagesLoader = new ImagesLoader([
-    require("Public/img/part-beam.png"),
-    require("Public/img/part-drop.png"),
-    require("Public/img/part-sphere.png"),
-    require("Public/img/part-grid.png"),
-    require("Public/img/part-field.png"),
-    require("Public/img/part-stars.png")
+    require("Assets/img/part-beam.png"),
+    require("Assets/img/part-drop.png"),
+    require("Assets/img/part-sphere.png"),
+    require("Assets/img/part-grid.png"),
+    require("Assets/img/part-field.png"),
+    require("Assets/img/part-stars.png")
   ]);
 
   imagesLoader.onProgress(function(percent) {

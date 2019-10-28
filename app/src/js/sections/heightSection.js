@@ -13,9 +13,9 @@ var heightMap = new HeightMap({
   plane: false,
   points: false,
   maps: [
-    { name: "A", url: require("Public/img/heightMap-A.jpg") },
-    { name: "B", url: require("Public/img/heightMap-B.jpg") },
-    { name: "O", url: require("Public/img/heightMap-O.jpg") }
+    { name: "A", url: require("Assets/img/heightMap-A.jpg") },
+    { name: "B", url: require("Assets/img/heightMap-B.jpg") },
+    { name: "O", url: require("Assets/img/heightMap-O.jpg") }
   ]
 });
 heightMap.el.position.z = -10;

@@ -38,13 +38,13 @@ function Beam(options) {
   });
 
   var bodyTexture = new THREE.TextureLoader().load(
-    require("Public/img/texture-laserBody.png")
+    require("Assets/img/texture-laserBody.png")
   );
   var capTexture = new THREE.TextureLoader().load(
-    require("Public/img/texture-laserCap.png")
+    require("Assets/img/texture-laserCap.png")
   );
   var flareTexture = new THREE.TextureLoader().load(
-    require("Public/img/texture-laserFlare.png")
+    require("Assets/img/texture-laserFlare.png")
   );
 
   var lineMaterial = new THREE.LineBasicMaterial({ color: parameters.color });
