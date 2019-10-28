@@ -13,14 +13,9 @@ var HASH =
     var instance = null;
 
     function init() {
+      // replace placeHolder add set Hello.png
       var agencies = {
-        akqa: "AKQA",
-        hki: "HKI",
-        grouek: "Grouek",
-        mediamonks: "Media Monks",
-        soleilnoir: "Soleil Noir",
-        thread: "Thread",
-        ultranoir: "Ultra Noir"
+        none: ""
       };
 
       function getHash() {

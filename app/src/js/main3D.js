@@ -205,7 +205,8 @@ jQuery(function() {
 
     // out begin
     if (from === "hello") {
-      helloSection.out(way);
+      // I dont know the reason, but it works when I commented out it
+      // helloSection.out(way);
     } else if (from === "beams") {
       beamsSection.out(way);
     } else if (from === "drop") {

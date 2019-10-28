@@ -22,6 +22,7 @@ class Events {
    * @return {Number} [id]
    */
   on(name, callback) {
+    console.log("On", name);
     if (!this.events[name]) {
       this.events[name] = [];
     }
@@ -47,7 +48,7 @@ class Events {
     if (!this.events[name]) {
       return false;
     }
-    console.log("event", name, data);
+    console.log("Event", name, data);
 
     let suscribers = this.events[name];
     for (let i = 0, j = suscribers.length; i < j; i++) {

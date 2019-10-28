@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> Hello I'm V </title>
-    <link rel="image_src" href="http://vaalentin.github.io/2015/app/public/img/preview.jpg" />
-    <meta name="description" content="A french Creative / Front end developer who loves to experiment, iterate and build premium experiences." />
+    <link rel="image_src" href="http://vaalentin.github.io/2015/app/public/img/preview.jpg"/>
+    <meta name="description"
+          content="A french Creative / Front end developer who loves to experiment, iterate and build premium experiences."/>
     <link rel="apple-touch-icon" sizes="57x57" href="public/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="114x114" href="public/favicons/apple-touch-icon-114x114.png">
     <link rel="apple-touch-icon" sizes="72x72" href="public/favicons/apple-touch-icon-72x72.png">
@@ -34,11 +35,13 @@
             opacity: 1;
             background-color: #0a0a0a;
         }
+
         .loader__title {
             position: relative;
             display: table-cell;
             vertical-align: middle;
         }
+
         .loader__progress {
             position: absolute;
             bottom: 0;
@@ -71,7 +74,7 @@
     }*/
 
     // features
-    function mobile () {
+    function mobile() {
       return navigator.userAgent.match(/Android/i)
         || navigator.userAgent.match(/webOS/i)
         || navigator.userAgent.match(/iPhone/i)
@@ -81,10 +84,10 @@
         || navigator.userAgent.match(/Windows Phone/i);
     }
 
-    function webGL () {
+    function webGL() {
       try {
         var canvas = document.createElement('canvas');
-        return !! window.WebGLRenderingContext
+        return !!window.WebGLRenderingContext
           && (canvas.getContext('webgl')
             || canvas.getContext('experimental-webgl'));
 
@@ -107,21 +110,21 @@
     ];
 
     /*// dev 配置
-          var js_2D = [
-            "./dist/main_2D.js",
-            "./dist/main_2D~main_3D.js",
-            "./dist/vendors~main_2D.js",
-            "./dist/vendors~main_2D~main_3D.js"
-          ];
-          var js_3D = [
-            "./dist/main_3D.js",
-            "./dist/main_2D~main_3D.js",
-            "./dist/vendors~main_2D~main_3D.js",
-            "./dist/vendors~main_3D.js"
-          ];*/
+    var js_2D = [
+      "./dist/main_2D.js",
+      "./dist/main_2D~main_3D.js",
+      "./dist/vendors~main_2D.js",
+      "./dist/vendors~main_2D~main_3D.js"
+    ];
+    var js_3D = [
+      "./dist/main_3D.js",
+      "./dist/main_2D~main_3D.js",
+      "./dist/vendors~main_2D~main_3D.js",
+      "./dist/vendors~main_3D.js"
+    ];*/
 
     if (webGL() && !mobile()) {
-      for (let i = 0;i<js_3D.length;i++){
+      for (let i = 0; i < js_3D.length; i++) {
         let jsPayload = document.createElement('script');
         jsPayload.type = 'text/javascript';
         jsPayload.async = jsPayload.defer = false;
@@ -129,7 +132,7 @@
         head.appendChild(jsPayload);
       }
     } else {
-      for (let i = 0;i<js_2D.length;i++){
+      for (let i = 0; i < js_2D.length; i++) {
         let jsPayload = document.createElement('script');
         jsPayload.type = 'text/javascript';
         jsPayload.async = jsPayload.defer = false;
@@ -174,7 +177,8 @@
                         </div>
                     </div>
                     <p class="text--center text--white">
-                        There&apos;re 2 parts on the website. Presentation and About me, you can switch between them anytime by clicking on the bottom and top part of the screen.
+                        There&apos;re 2 parts on the website. Presentation and About me, you can switch between them
+                        anytime by clicking on the bottom and top part of the screen.
                     </p>
                 </div>
             </div>
@@ -266,7 +270,8 @@
             <div class="heads__section heads__section--hello">
                 <div class="part part--title hello__title">
                     <h1 class="text--white text--noMargin"> HELLO </h1>
-                    <h1 class="text--white text--noMargin"> <span class="placeholder--agency placeholder--agency--capital"></span> </h1>
+                    <h1 class="text--white text--noMargin"><span
+                            class="placeholder--agency placeholder--agency--capital"></span></h1>
                 </div>
                 <div class="part part--smoke"
                      data-0="transform:translate3d(0px, 0px, 0px)"
@@ -399,7 +404,8 @@
 
     <div class="tails">
         <div class="tails__section tails__section--about">
-            <h1 class="tails__section__el"> HELLO <span class="placeholder--agency placeholder--agency--capital"></span> </h1>
+            <h1 class="tails__section__el"> HELLO <span class="placeholder--agency placeholder--agency--capital"></span>
+            </h1>
             <h2 class="tails__section__el text--center">
                 I'm V, a french creative / front end developer. <br/>
                 And I want to work for you.
@@ -409,16 +415,20 @@
                     I love to experiment, iterate and build premium experiences.
                 </p>
                 <p>
-                    I studied graphic design for a few years, and then started coding, at first to enrich my reflection and get a better understanding of how a project is conducted, but soon for the thrill of it.
+                    I studied graphic design for a few years, and then started coding, at first to enrich my reflection
+                    and get a better understanding of how a project is conducted, but soon for the thrill of it.
                 </p>
                 <p>
-                    After working in Shanghai for more than a year as a web developer, it's time for a change. I'm looking to work for an agency with curious, dynamic and innovative people, and I think <span class="placeholder--agency placeholder--agency--you"></span> can be the one for me.
+                    After working in Shanghai for more than a year as a web developer, it's time for a change. I'm
+                    looking to work for an agency with curious, dynamic and innovative people, and I think <span
+                        class="placeholder--agency placeholder--agency--you"></span> can be the one for me.
                 </p>
                 <p>
                     To conclude, I am a hardworker with team spirit, creative, curious, and eager to learn new things.
                 </p>
                 <p>
-                    I'm of course available for any questions you might have. You can contact me at valentin.marmonier@gmail.com
+                    I'm of course available for any questions you might have. You can contact me at
+                    valentin.marmonier@gmail.com
                 </p>
                 <div class="text--center">
                     <a class="tails__link placeholder--email"> Contact me </a>

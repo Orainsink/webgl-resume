@@ -1,7 +1,5 @@
 "use strict";
 
-import BackgroundLines from "./BackgroundLinesObject3D";
-
 import * as THREE from "three";
 import { TweenLite } from "gsap/TweenMax";
 
@@ -19,14 +17,7 @@ function Title() {
   var path;
 
   var sprites = {
-    akqa: require("Assets/img/sprite-AKQA.png"),
-    hki: require("Assets/img/sprite-HKI.png"),
-    grouek: require("Assets/img/sprite-grouek.png"),
-    mediamonks: require("Assets/img/sprite-mediamonks.png"),
-    none: require("Assets/img/sprite-none.png"),
-    soleilnoir: require("Assets/img/sprite-soleilnoir.png"),
-    thread: require("Assets/img/sprite-thread.png"),
-    ultranoir: require("Assets/img/sprite-ultranoir.png")
+    none: require("Assets/img/sprite-none.png")
   };
 
   if (sprites[HASH.hash]) {
@@ -72,18 +63,23 @@ function Title() {
   this.el = plane;
 
   this.in = function() {
+    console.log("in");
+    // something went wrong here
     inTween.play();
   };
 
   this.out = function() {
-    inTween.reverse();
+    console.log("out");
+    // inTween.reverse();
   };
 
   this.start = function() {
+    console.log("start");
     sprite.start();
   };
 
   this.stop = function() {
+    console.log("stop");
     sprite.stop();
   };
 }
