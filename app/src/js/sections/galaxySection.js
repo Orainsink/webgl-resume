@@ -5,15 +5,15 @@ import Section from "../classes/SectionClass";
 import TextPanel from "../objects3D/TextPanelObject3D";
 import Galaxy from "../objects3D/GalaxyObject3D";
 
-var galaxySection = new Section("galaxy");
+let galaxySection = new Section("galaxy");
 
-var galaxy = new Galaxy();
+let galaxy = new Galaxy();
 galaxy.el.rotation.x = -1;
 galaxySection.add(galaxy.el);
 
 galaxy.el.visible = false;
 
-var text = new TextPanel("W  O  R  K \n A  S    A    T  E  A  M", {
+let text = new TextPanel("W  O  R  K \n A  S    A    T  E  A  M", {
   align: "center",
   style: "",
   size: 50,

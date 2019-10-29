@@ -19,9 +19,9 @@ import random from "../utils/randomUtil";
  */
 class Smoke {
   constructor(options) {
-    var parameters = jQuery.extend(Smoke.defaultOptions, options);
+    let parameters = jQuery.extend(Smoke.defaultOptions, options);
 
-    var texture = new THREE.TextureLoader().load(
+    let texture = new THREE.TextureLoader().load(
       require("Assets/img/sprite-smoke.png")
     );
     texture.flipY = false;
@@ -33,7 +33,7 @@ class Smoke {
       duration: 50
     });
 
-    var baseMaterial = new THREE.MeshBasicMaterial({
+    let baseMaterial = new THREE.MeshBasicMaterial({
       map: texture,
       depthWrite: false,
       depthTest: true,
@@ -41,22 +41,22 @@ class Smoke {
       opacity: 0.2
     });
 
-    var backMaterial = baseMaterial.clone();
+    let backMaterial = baseMaterial.clone();
     backMaterial.color = new THREE.Color(parameters.backColor);
 
-    var frontMaterial = baseMaterial.clone();
+    let frontMaterial = baseMaterial.clone();
     frontMaterial.color = new THREE.Color(parameters.frontColor);
 
-    var geometry = new THREE.PlaneGeometry(10, 10);
+    let geometry = new THREE.PlaneGeometry(10, 10);
 
     this.el = new THREE.Object3D();
 
-    for (var i = 0; i < parameters.layers; i++) {
-      var positionX;
-      var positionY;
-      var positionZ;
-      var rotationZ;
-      var scale;
+    for (let i = 0; i < parameters.layers; i++) {
+      let positionX;
+      let positionY;
+      let positionZ;
+      let rotationZ;
+      let scale;
 
       if (parameters.data[i]) {
         positionX = parameters.data[i].positionX || random(-20, 20);
@@ -72,9 +72,9 @@ class Smoke {
         scale = random(1, 10);
       }
 
-      var material = positionZ < 0 ? backMaterial : frontMaterial;
+      let material = positionZ < 0 ? backMaterial : frontMaterial;
 
-      var plane = new THREE.Mesh(geometry, material);
+      let plane = new THREE.Mesh(geometry, material);
       plane.position.set(positionX, positionY, positionZ);
       plane.rotation.z = rotationZ;
       plane.scale.set(scale, scale, 1);

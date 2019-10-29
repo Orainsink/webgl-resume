@@ -7,21 +7,21 @@ import Section from "../classes/SectionClass";
 import FlowField from "../objects3D/FlowFieldObject3D";
 import TextPanel from "../objects3D/TextPanelObject3D";
 
-var flowSection = new Section("flow");
+let flowSection = new Section("flow");
 
-var points = [
+let points = [
   new THREE.Vector3(0, 50, 20),
   new THREE.Vector3(20, 0, -10),
   new THREE.Vector3(-20, -100, 0)
 ];
 
-var field = new FlowField(points, {
+let field = new FlowField(points, {
   subsAmplitude: 50,
   subsNumber: 10
 });
 flowSection.add(field.el);
 
-var text = new TextPanel("F  O  L  L  O  W \n T  H  E    T  R  E  N  D  S", {
+let text = new TextPanel("F  O  L  L  O  W \n T  H  E    T  R  E  N  D  S", {
   align: "center",
   style: "",
   size: 50,
@@ -33,7 +33,7 @@ flowSection.add(text.el);
 
 field.el.visible = false;
 
-var fieldIn = false;
+let fieldIn = false;
 
 flowSection.fieldIn = function() {
   if (fieldIn) {

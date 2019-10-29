@@ -13,10 +13,10 @@ function dilate(geometry, offset) {
   geometry.computeVertexNormals();
 
   // vertices normals
-  var vertexNormals = new Array(geometry.vertices.length);
+  let vertexNormals = new Array(geometry.vertices.length);
 
-  for (var i = 0, j = geometry.faces.length; i < j; i++) {
-    var face = geometry.faces[i];
+  for (let i = 0, j = geometry.faces.length; i < j; i++) {
+    let face = geometry.faces[i];
 
     if (face instanceof THREE.Face4) {
       vertexNormals[face.a] = face.vertexNormals[0];
@@ -31,9 +31,9 @@ function dilate(geometry, offset) {
   }
 
   // offset vertices
-  for (var k = 0, l = geometry.vertices.length; k < l; k++) {
-    var vertex = geometry.vertices[k];
-    var normal = vertexNormals[k];
+  for (let k = 0, l = geometry.vertices.length; k < l; k++) {
+    let vertex = geometry.vertices[k];
+    let normal = vertexNormals[k];
 
     vertex.x += normal.x * offset;
     vertex.y += normal.y * offset;

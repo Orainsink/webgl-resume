@@ -21,67 +21,68 @@ import random from "../utils/randomUtil";
  * @pram {Array} [options.rangeZ=[-50, 50]] Z position range
  * @requires jQuery, THREE, TweenLite, random
  */
-function Strip(options) {
-  this.parameters = jQuery.extend(Strip.defaultOptions, options);
+class Strip {
+  constructor(options) {
+    this.parameters = jQuery.extend(Strip.defaultOptions, options);
 
-  this.geometry = new THREE.PlaneGeometry(
-    this.parameters.width,
-    this.parameters.height
-  );
+    this.geometry = new THREE.PlaneGeometry(
+      this.parameters.width,
+      this.parameters.height
+    );
 
-  this.el = new THREE.Object3D();
+    this.el = new THREE.Object3D();
 
-  var materials = {};
+    let materials = {};
 
-  for (var i = 0; i < this.parameters.count; i++) {
-    var x = random(this.parameters.rangeX[0], this.parameters.rangeX[1]);
-    var y = random(this.parameters.rangeY[0], this.parameters.rangeY[1]);
-    var z = random(this.parameters.rangeZ[0], this.parameters.rangeZ[1]);
+    for (let i = 0; i < this.parameters.count; i++) {
+      let x = random(this.parameters.rangeX[0], this.parameters.rangeX[1]);
+      let y = random(this.parameters.rangeY[0], this.parameters.rangeY[1]);
+      let z = random(this.parameters.rangeZ[0], this.parameters.rangeZ[1]);
 
-    var color = this.parameters.colors[
-      random(0, this.parameters.colors.length, true)
-    ];
+      let color = this.parameters.colors[
+        random(0, this.parameters.colors.length, true)
+      ];
 
-    if (!materials[color]) {
-      var material = new THREE.MeshBasicMaterial({
-        color: color,
-        side: THREE.DoubleSide
-      });
+      if (!materials[color]) {
+        let material = new THREE.MeshBasicMaterial({
+          color: color,
+          side: THREE.DoubleSide
+        });
 
-      materials[color] = material;
+        materials[color] = material;
+      }
+
+      let mesh = new THREE.Mesh(this.geometry, materials[color]);
+      mesh.position.set(x, y, z);
+      this.el.add(mesh);
     }
 
-    var mesh = new THREE.Mesh(this.geometry, materials[color]);
-    mesh.position.set(x, y, z);
-    this.el.add(mesh);
+    this.from = this.geometry.vertices[0].x;
+    this.to = this.geometry.vertices[1].x;
+    this.cache = { x: this.from };
+
+    this.geometry.vertices[1].x = this.geometry.vertices[3].x = this.geometry.vertices[0].x;
+  }
+  update() {
+    this.geometry.vertices[1].x = this.geometry.vertices[3].x = this.cache.x;
+    this.geometry.verticesNeedUpdate = true;
+    this.geometry.computeBoundingSphere();
   }
 
-  this.from = this.geometry.vertices[0].x;
-  this.to = this.geometry.vertices[1].x;
-  this.cache = { x: this.from };
+  in() {
+    TweenLite.to(this.cache, this.parameters.speed, {
+      x: this.to,
+      onUpdate: this.update.bind(this)
+    });
+  }
 
-  this.geometry.vertices[1].x = this.geometry.vertices[3].x = this.geometry.vertices[0].x;
+  out() {
+    TweenLite.to(this.cache, this.parameters.speed, {
+      x: this.from,
+      onUpdate: this.update.bind(this)
+    });
+  }
 }
-
-Strip.prototype.update = function() {
-  this.geometry.vertices[1].x = this.geometry.vertices[3].x = this.cache.x;
-  this.geometry.verticesNeedUpdate = true;
-  this.geometry.computeBoundingSphere();
-};
-
-Strip.prototype.in = function() {
-  TweenLite.to(this.cache, this.parameters.speed, {
-    x: this.to,
-    onUpdate: this.update.bind(this)
-  });
-};
-
-Strip.prototype.out = function() {
-  TweenLite.to(this.cache, this.parameters.speed, {
-    x: this.from,
-    onUpdate: this.update.bind(this)
-  });
-};
 
 Strip.defaultOptions = {
   count: 10,

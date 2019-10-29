@@ -5,12 +5,12 @@ import Section from "../classes/SectionClass";
 import TextPanel from "../objects3D/TextPanelObject3D";
 import Wave from "../objects3D/WaveObject3D";
 
-var waveSection = new Section("wave");
+let waveSection = new Section("wave");
 
-var wave = new Wave();
+let wave = new Wave();
 waveSection.add(wave.el);
 
-var text = new TextPanel(
+let text = new TextPanel(
   "E  Y  E  S    O  N    T  H  E \n H  O  R  I  Z  O  N",
   {
     align: "center",

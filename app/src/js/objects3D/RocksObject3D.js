@@ -1,6 +1,6 @@
 "use strict";
 
-const THREE = require("three");
+import * as THREE from "three";
 require("../utils/legacyJSONLoaderUtil");
 import { TweenLite } from "gsap/TweenMax";
 
@@ -13,126 +13,124 @@ import yoyo from "../utils/yoyoUtil";
  * @constructor
  * @requires THREE, TweenLite, yoyo
  */
-function Rocks() {
-  var group = new THREE.Object3D();
+class Rocks {
+  constructor() {
+    let group = new THREE.Object3D();
+    let sphere = Rocks.getSphere();
+    group.add(sphere);
+    let light = Rocks.getLight();
+    group.add(light);
 
-  var sphere = this.getSphere();
-  group.add(sphere);
+    // rocks
+    let rocksMaterial = new THREE.MeshLambertMaterial({
+      color: "#0a0a0a",
+      side: THREE.DoubleSide,
+      flatShading: THREE.FlatShading
+    });
 
-  var light = this.getLight();
-  group.add(light);
+    let fromColor = new THREE.Color("#0a0a0a");
+    let toColor = new THREE.Color("#ffffff");
 
-  // rocks
-  var rocksMaterial = new THREE.MeshLambertMaterial({
-    color: "#0a0a0a",
-    side: THREE.DoubleSide,
-    flatShading: THREE.FlatShading
-  });
+    let loader = new THREE.LegacyJSONLoader();
+    loader.load(
+      "public/3D/rocks.json",
+      function(geometry) {
+        let rocks = new THREE.Mesh(geometry, rocksMaterial);
+        rocks.position.set(-70, 0, -30);
+        group.add(rocks);
 
-  var fromColor = new THREE.Color("#0a0a0a");
-  var toColor = new THREE.Color("#ffffff");
+        let cache = { angle: 0, y: 11, intensity: 0, color: 0 };
+        function update() {
+          rocks.rotation.x = cache.angle;
 
-  var loader = new THREE.LegacyJSONLoader();
-  loader.load(
-    "public/3D/rocks.json",
-    function(geometry) {
-      var rocks = new THREE.Mesh(geometry, rocksMaterial);
-      rocks.position.set(-70, 0, -30);
-      group.add(rocks);
+          light.intensity = cache.intensity;
 
-      var cache = { angle: 0, y: 11, intensity: 0, color: 0 };
-      function update() {
-        rocks.rotation.x = cache.angle;
+          light.position.y = cache.y;
+          sphere.position.y = cache.y;
 
-        light.intensity = cache.intensity;
+          sphere.material.color = fromColor.clone().lerp(toColor, cache.color);
+        }
 
-        light.position.y = cache.y;
-        sphere.position.y = cache.y;
+        this.in = function() {
+          TweenLite.to(cache, 1, {
+            angle: 0.3,
+            y: 20,
+            intensity: 15,
+            color: 1,
+            onUpdate: update
+          });
+        };
 
-        sphere.material.color = fromColor.clone().lerp(toColor, cache.color);
-      }
+        this.out = function(way) {
+          let y = way === "up" ? 11 : 20;
+          TweenLite.to(cache, 1, {
+            angle: 0,
+            y: y,
+            intensity: 0,
+            color: 0,
+            onUpdate: update
+          });
+        };
 
-      this.in = function() {
-        TweenLite.to(cache, 1, {
-          angle: 0.3,
-          y: 20,
-          intensity: 15,
-          color: 1,
-          onUpdate: update
+        let idleTween = TweenLite.to({ x: -2, z: -45 }, 2, {
+          x: 2,
+          z: -35,
+          paused: true,
+          onUpdate: function() {
+            light.position.z = this.target.z;
+            sphere.position.z = this.target.z;
+          },
+          onComplete: yoyo,
+          onReverseComplete: yoyo
         });
-      };
 
-      this.out = function(way) {
-        var y = way === "up" ? 11 : 20;
-        TweenLite.to(cache, 1, {
-          angle: 0,
-          y: y,
-          intensity: 0,
-          color: 0,
-          onUpdate: update
-        });
-      };
+        this.start = function() {
+          idleTween.resume();
+        };
 
-      var idleTween = TweenLite.to({ x: -2, z: -45 }, 2, {
-        x: 2,
-        z: -35,
-        paused: true,
-        onUpdate: function() {
-          light.position.z = this.target.z;
-          sphere.position.z = this.target.z;
-        },
-        onComplete: yoyo,
-        onReverseComplete: yoyo
-      });
+        this.stop = function() {
+          idleTween.pause();
+        };
+      }.bind(this)
+    );
 
-      this.start = function() {
-        idleTween.resume();
-      };
+    this.el = group;
+    this.in = function() {};
+    this.out = this.in;
+    this.start = this.in;
+    this.stop = this.in;
+  }
 
-      this.stop = function() {
-        idleTween.pause();
-      };
-    }.bind(this)
-  );
+  /**
+   * Get white sphere
+   *
+   * @method getSphere
+   * @return {THREE.Mesh}
+   */
+  static getSphere() {
+    let material = new THREE.MeshBasicMaterial({
+      color: "#0a0a0a",
+      fog: false
+    });
+    let geometry = new THREE.SphereGeometry(5, 20, 20);
+    let mesh = new THREE.Mesh(geometry, material);
 
-  this.el = group;
+    mesh.position.set(0, 11, -40);
 
-  this.in = function() {};
+    return mesh;
+  }
+  /**
+   * Get light
+   *
+   * @method getLight
+   * @return {THREE.Light}
+   */
+  static getLight() {
+    let light = new THREE.PointLight("#ffffff", 0, 50);
+    light.position.set(0, 11, -40);
 
-  this.out = this.in;
-
-  this.start = this.in;
-
-  this.stop = this.in;
+    return light;
+  }
 }
-
-/**
- * Get white sphere
- *
- * @method getSphere
- * @return {THREE.Mesh}
- */
-Rocks.prototype.getSphere = function() {
-  var material = new THREE.MeshBasicMaterial({ color: "#0a0a0a", fog: false });
-  var geometry = new THREE.SphereGeometry(5, 20, 20);
-  var mesh = new THREE.Mesh(geometry, material);
-
-  mesh.position.set(0, 11, -40);
-
-  return mesh;
-};
-
-/**
- * Get light
- *
- * @method getLight
- * @return {THREE.Light}
- */
-Rocks.prototype.getLight = function() {
-  var light = new THREE.PointLight("#ffffff", 0, 50);
-  light.position.set(0, 11, -40);
-
-  return light;
-};
 
 export default Rocks;

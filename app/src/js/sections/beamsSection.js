@@ -4,13 +4,13 @@ import Section from "../classes/SectionClass";
 
 import Beam from "../objects3D/BeamObject3D";
 
-var beamsSection = new Section("beams");
+let beamsSection = new Section("beams");
 
-var leftBeam = new Beam({ color: "#808080", delay: 0.2 });
+let leftBeam = new Beam({ color: "#808080", delay: 0.2 });
 leftBeam.el.position.set(15, 25, -10);
 beamsSection.add(leftBeam.el);
 
-var middleBeam = new Beam({
+let middleBeam = new Beam({
   color: "#ffffff",
   width: 4,
   cubeSize: 1,
@@ -19,7 +19,7 @@ var middleBeam = new Beam({
 middleBeam.el.position.y = 15;
 beamsSection.add(middleBeam.el);
 
-var rightBeam = new Beam({ color: "#4c4c4c", delay: 0.4 });
+let rightBeam = new Beam({ color: "#4c4c4c", delay: 0.4 });
 rightBeam.el.position.set(-20, 30, -20);
 beamsSection.add(rightBeam.el);
 

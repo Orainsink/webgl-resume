@@ -7,8 +7,6 @@
  * @method yoyo
  */
 function yoyo() {
-  /*jshint validthis: true */
-
   if (this.reversed()) {
     this.restart();
   } else {

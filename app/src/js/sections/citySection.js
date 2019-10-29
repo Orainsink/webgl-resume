@@ -6,9 +6,9 @@ import Section from "../classes/SectionClass";
 
 import City from "../objects3D/CityObject3D";
 
-var citySection = new Section("city");
+let citySection = new Section("city");
 
-var city = new City();
+let city = new City();
 city.addGroup({
   name: "shanghai",
   objs: {

@@ -6,9 +6,9 @@ import TextPanel from "../objects3D/TextPanelObject3D";
 import Face from "../objects3D/FaceHpObject3D";
 import Strips from "../objects3D/StripsObject3D";
 
-var faceSection = new Section("face");
+let faceSection = new Section("face");
 
-var text = new TextPanel("K  E  E  P \n T  R  Y  I  N  G", {
+let text = new TextPanel("K  E  E  P \n T  R  Y  I  N  G", {
   align: "left",
   style: "",
   size: 50,
@@ -18,13 +18,13 @@ text.el.position.set(23, 0, 0);
 text.el.rotation.y = -0.4;
 faceSection.add(text.el);
 
-var face = new Face();
+let face = new Face();
 face.el.position.y = -5;
 face.el.rotation.x = -0.1;
 face.el.rotation.z = 0.25;
 faceSection.add(face.el);
 
-var strips = new Strips({
+let strips = new Strips({
   count: 10,
   colors: ["#444444", "#333333", "#222222"],
   rangeY: [-60, 60]

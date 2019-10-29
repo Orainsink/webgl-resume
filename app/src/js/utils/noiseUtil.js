@@ -1,6 +1,6 @@
 // http://mrl.nyu.edu/~perlin/noise/
-var ImprovedNoise = function() {
-  var p = [
+let ImprovedNoise = function() {
+  let p = [
     151,
     160,
     137,
@@ -259,7 +259,7 @@ var ImprovedNoise = function() {
     180
   ];
 
-  for (var i = 0; i < 256; i++) {
+  for (let i = 0; i < 256; i++) {
     p[256 + i] = p[i];
   }
 
@@ -272,19 +272,19 @@ var ImprovedNoise = function() {
   }
 
   function grad(hash, x, y, z) {
-    var h = hash & 15;
-    var u = h < 8 ? x : y,
+    let h = hash & 15;
+    let u = h < 8 ? x : y,
       v = h < 4 ? y : h == 12 || h == 14 ? x : z;
     return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);
   }
 
   return {
     noise: function(x, y, z) {
-      var floorX = Math.floor(x),
+      let floorX = Math.floor(x),
         floorY = Math.floor(y),
         floorZ = Math.floor(z);
 
-      var X = floorX & 255,
+      let X = floorX & 255,
         Y = floorY & 255,
         Z = floorZ & 255;
 
@@ -292,15 +292,15 @@ var ImprovedNoise = function() {
       y -= floorY;
       z -= floorZ;
 
-      var xMinus1 = x - 1,
+      let xMinus1 = x - 1,
         yMinus1 = y - 1,
         zMinus1 = z - 1;
 
-      var u = fade(x),
+      let u = fade(x),
         v = fade(y),
         w = fade(z);
 
-      var A = p[X] + Y,
+      let A = p[X] + Y,
         AA = p[A] + Z,
         AB = p[A + 1] + Z,
         B = p[X + 1] + Y,
@@ -332,44 +332,44 @@ var ImprovedNoise = function() {
   };
 };
 
-var currentRandom = Math.random;
+let currentRandom = Math.random;
 
 // Pseudo-random generator
 function Marsaglia(i1, i2) {
   // from http://www.math.uni-bielefeld.de/~sillke/ALGORITHMS/random/marsaglia-c
-  var z = i1 || 362436069,
+  let z = i1 || 362436069,
     w = i2 || 521288629;
-  var nextInt = function() {
+  let nextInt = function() {
     z = (36969 * (z & 65535) + (z >>> 16)) & 0xffffffff;
     w = (18000 * (w & 65535) + (w >>> 16)) & 0xffffffff;
     return (((z & 0xffff) << 16) | (w & 0xffff)) & 0xffffffff;
   };
 
   this.nextDouble = function() {
-    var i = nextInt() / 4294967296;
+    let i = nextInt() / 4294967296;
     return i < 0 ? 1 + i : i;
   };
   this.nextInt = nextInt;
 }
 Marsaglia.createRandomized = function() {
-  var now = new Date();
+  let now = new Date();
   return new Marsaglia((now / 60000) & 0xffffffff, now & 0xffffffff);
 };
 
 // Noise functions and helpers
 function PerlinNoise(seed) {
-  var rnd =
+  let rnd =
     seed !== undefined ? new Marsaglia(seed) : Marsaglia.createRandomized();
-  var i, j;
+  let i, j;
   // http://www.noisemachine.com/talk1/17b.html
   // http://mrl.nyu.edu/~perlin/noise/
   // generate permutation
-  var p = new Array(512);
+  let p = new Array(512);
   for (i = 0; i < 256; ++i) {
     p[i] = i;
   }
   for (i = 0; i < 256; ++i) {
-    var t = p[(j = rnd.nextInt() & 0xff)];
+    let t = p[(j = rnd.nextInt() & 0xff)];
     p[j] = p[i];
     p[i] = t;
   }
@@ -379,14 +379,14 @@ function PerlinNoise(seed) {
   }
 
   function grad3d(i, x, y, z) {
-    var h = i & 15; // convert into 12 gradient directions
-    var u = h < 8 ? x : y,
+    let h = i & 15; // convert into 12 gradient directions
+    let u = h < 8 ? x : y,
       v = h < 4 ? y : h === 12 || h === 14 ? x : z;
     return ((h & 1) === 0 ? u : -u) + ((h & 2) === 0 ? v : -v);
   }
 
   function grad2d(i, x, y) {
-    var v = (i & 1) === 0 ? x : y;
+    let v = (i & 1) === 0 ? x : y;
     return (i & 2) === 0 ? -v : v;
   }
 
@@ -399,16 +399,16 @@ function PerlinNoise(seed) {
   }
 
   this.noise3d = function(x, y, z) {
-    var X = Math.floor(x) & 255,
+    let X = Math.floor(x) & 255,
       Y = Math.floor(y) & 255,
       Z = Math.floor(z) & 255;
     x -= Math.floor(x);
     y -= Math.floor(y);
     z -= Math.floor(z);
-    var fx = (3 - 2 * x) * x * x,
+    let fx = (3 - 2 * x) * x * x,
       fy = (3 - 2 * y) * y * y,
       fz = (3 - 2 * z) * z * z;
-    var p0 = p[X] + Y,
+    let p0 = p[X] + Y,
       p00 = p[p0] + Z,
       p01 = p[p0 + 1] + Z,
       p1 = p[X + 1] + Y,
@@ -438,13 +438,13 @@ function PerlinNoise(seed) {
   };
 
   this.noise2d = function(x, y) {
-    var X = Math.floor(x) & 255,
+    let X = Math.floor(x) & 255,
       Y = Math.floor(y) & 255;
     x -= Math.floor(x);
     y -= Math.floor(y);
-    var fx = (3 - 2 * x) * x * x,
+    let fx = (3 - 2 * x) * x * x,
       fy = (3 - 2 * y) * y * y;
-    var p0 = p[X] + Y,
+    let p0 = p[X] + Y,
       p1 = p[X + 1] + Y;
     return lerp(
       fy,
@@ -454,16 +454,16 @@ function PerlinNoise(seed) {
   };
 
   this.noise1d = function(x) {
-    var X = Math.floor(x) & 255;
+    let X = Math.floor(x) & 255;
     x -= Math.floor(x);
-    var fx = (3 - 2 * x) * x * x;
+    let fx = (3 - 2 * x) * x * x;
     return lerp(fx, grad1d(p[X], x), grad1d(p[X + 1], x - 1));
   };
 }
 
 //  these are lifted from Processing.js
 // processing defaults
-var noiseProfile = {
+let noiseProfile = {
   generator: undefined,
   octaves: 4,
   fallout: 0.5,
@@ -475,11 +475,11 @@ function noise(x, y, z) {
     // caching
     noiseProfile.generator = new PerlinNoise(noiseProfile.seed);
   }
-  var generator = noiseProfile.generator;
-  var effect = 1,
+  let generator = noiseProfile.generator;
+  let effect = 1,
     k = 1,
     sum = 0;
-  for (var i = 0; i < noiseProfile.octaves; ++i) {
+  for (let i = 0; i < noiseProfile.octaves; ++i) {
     effect *= noiseProfile.fallout;
     switch (arguments.length) {
       case 1:

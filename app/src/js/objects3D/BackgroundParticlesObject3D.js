@@ -1,5 +1,3 @@
-/* jshint shadow: true */
-
 "use strict";
 
 import * as THREE from "three";
@@ -18,55 +16,61 @@ import random from "../utils/randomUtil";
  * @param {Array} [options.rangeY=[-100, 100]] Y range for positions
  * @requires jQuery, THREE, random
  */
-function BackgroundParticles(options) {
-  var parameters = jQuery.extend(BackgroundParticles.defaultOptions, options);
-
-  var material = new THREE.PointsMaterial({
-    size: parameters.particleSize
-  });
-
-  var geometry = new THREE.Geometry();
-
-  for (var i = 0; i < parameters.count; i++) {
-    var particle = new THREE.Vector3(
-      random(-50, 50),
-      random(parameters.rangeY[0], parameters.rangeY[1]),
-      random(-50, 100)
+class BackgroundParticles {
+  constructor(options) {
+    const parameters = jQuery.extend(
+      BackgroundParticles.defaultOptions,
+      options
     );
 
-    geometry.vertices.push(particle);
-  }
+    let material = new THREE.PointsMaterial({
+      size: parameters.particleSize
+    });
 
-  var group = new THREE.Object3D();
+    let geometry = new THREE.Geometry();
 
-  group.add(new THREE.Points(geometry, material));
-
-  if (parameters.strips) {
-    var stripsGeometry = new THREE.Geometry();
-
-    var stripGeometry = new THREE.PlaneGeometry(5, 2);
-    var stripMaterial = new THREE.MeshLambertMaterial({ color: "#666666" });
-
-    for (var i = 0; i < parameters.stripsCount; i++) {
-      var stripMesh = new THREE.Mesh(stripGeometry, stripMaterial);
-      stripMesh.position.set(
+    for (let i = 0; i < parameters.count; i++) {
+      let particle = new THREE.Vector3(
         random(-50, 50),
         random(parameters.rangeY[0], parameters.rangeY[1]),
-        random(-50, 0)
+        random(-50, 100)
       );
 
-      stripMesh.scale.set(random(0.5, 1), random(0.1, 1), 1);
-
-      stripMesh.updateMatrix();
-      stripsGeometry.merge(stripMesh.geometry, stripMesh.matrix);
+      geometry.vertices.push(particle);
     }
 
-    var totalMesh = new THREE.Mesh(stripsGeometry, stripMaterial);
+    let group = new THREE.Object3D();
 
-    group.add(totalMesh);
+    group.add(new THREE.Points(geometry, material));
+
+    if (parameters.strips) {
+      let stripsGeometry = new THREE.Geometry();
+
+      let stripGeometry = new THREE.PlaneGeometry(5, 2);
+      let stripMaterial = new THREE.MeshLambertMaterial({ color: "#666666" });
+
+      for (let i = 0; i < parameters.stripsCount; i++) {
+        let stripMesh = new THREE.Mesh(stripGeometry, stripMaterial);
+        stripMesh.position.set(
+          random(-50, 50),
+          random(parameters.rangeY[0], parameters.rangeY[1]),
+          random(-50, 0)
+        );
+
+        stripMesh.scale.set(random(0.5, 1), random(0.1, 1), 1);
+
+        stripMesh.updateMatrix();
+
+        stripsGeometry.merge(stripMesh.geometry, stripMesh.matrix);
+      }
+
+      let totalMesh = new THREE.Mesh(stripsGeometry, stripMaterial);
+
+      group.add(totalMesh);
+    }
+
+    this.el = group;
   }
-
-  this.el = group;
 }
 
 BackgroundParticles.defaultOptions = {

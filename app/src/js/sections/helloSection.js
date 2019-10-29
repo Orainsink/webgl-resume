@@ -4,12 +4,12 @@ import Section from "../classes/SectionClass";
 import Title from "../objects3D/HelloTitleObject3D";
 import Smoke from "../objects3D/SmokeObject3D";
 
-var helloSection = new Section("hello");
+let helloSection = new Section("hello");
 
-var title = new Title();
+let title = new Title();
 helloSection.add(title.el);
 
-var smoke = new Smoke({
+let smoke = new Smoke({
   frontColor: "#4c4c4c",
   backColor: "#ffffff",
   layers: 3,
@@ -58,7 +58,7 @@ helloSection.onStop(function() {
   title.stop();
 });
 
-var smokePlaying = false;
+let smokePlaying = false;
 
 helloSection.smokeStart = function() {
   if (smokePlaying) {

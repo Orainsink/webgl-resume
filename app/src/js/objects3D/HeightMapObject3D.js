@@ -42,7 +42,7 @@ class HeightMap {
     this.previous = undefined;
     this.current = undefined;
 
-    var group = new THREE.Object3D();
+    let group = new THREE.Object3D();
 
     this.geometry = new THREE.PlaneGeometry(
       50,
@@ -96,7 +96,7 @@ class HeightMap {
    * @return {THREE.Mesh}
    */
   getPlane() {
-    var material = new THREE.MeshLambertMaterial({
+    let material = new THREE.MeshLambertMaterial({
       flatShading: THREE.FlatShading,
       vertexColors: THREE.VertexColors
     });
@@ -128,11 +128,11 @@ class HeightMap {
    * @return {THREE.Object3D}
    */
   getLines() {
-    var material = new THREE.LineBasicMaterial({
+    let material = new THREE.LineBasicMaterial({
       vertexColors: THREE.VertexColors
     });
 
-    var lines = new THREE.Object3D();
+    let lines = new THREE.Object3D();
 
     if (this.parameters.vertical) {
       for (let x = 0; x < this.parameters.divisionsX + 1; x++) {
@@ -184,7 +184,7 @@ class HeightMap {
    * @return {TweenLite}
    */
   getIdleTween() {
-    var _this = this;
+    let _this = this;
 
     return TweenLite.to({}, 2, {
       paused: true,
@@ -209,35 +209,35 @@ class HeightMap {
    * @method loadMaps
    */
   loadMaps() {
-    var totalData =
+    let totalData =
       (this.parameters.divisionsX + 1) * (this.parameters.divisionsY + 1);
     this.data = { default: new Float32Array(totalData) };
 
-    var loader = new THREE.ImageLoader();
-    var total = this.parameters.maps.length;
-    var loaded = 0;
+    let loader = new THREE.ImageLoader();
+    let total = this.parameters.maps.length;
+    let loaded = 0;
 
-    var addMap = function(name, image) {
-      var width = image.width;
-      var height = image.height;
+    let addMap = function(name, image) {
+      let width = image.width;
+      let height = image.height;
 
-      var canvas = document.createElement("canvas");
+      let canvas = document.createElement("canvas");
       canvas.width = width;
       canvas.height = height;
 
-      var context = canvas.getContext("2d");
+      let context = canvas.getContext("2d");
 
       context.drawImage(image, 0, 0);
 
-      var stepX = width / this.parameters.divisionsX;
-      var stepY = height / this.parameters.divisionsY;
+      let stepX = width / this.parameters.divisionsX;
+      let stepY = height / this.parameters.divisionsY;
 
-      var data = new Float32Array(totalData);
-      var i = 0;
+      let data = new Float32Array(totalData);
+      let i = 0;
 
-      for (var y = 0; y < height; y += stepY) {
-        for (var x = 0; x < width; x += stepX) {
-          var pixelData = context.getImageData(x, y, 1, 1).data;
+      for (let y = 0; y < height; y += stepY) {
+        for (let x = 0; x < width; x += stepX) {
+          let pixelData = context.getImageData(x, y, 1, 1).data;
 
           // Luminance = R + G + B
           // int8 must be in the [-127, 127] range
@@ -249,7 +249,7 @@ class HeightMap {
       _this.data[name] = data;
     }.bind(this);
 
-    var _this = this;
+    let _this = this;
 
     function loadMap(map, index) {
       loader.load(map.url, function(image) {
@@ -268,8 +268,8 @@ class HeightMap {
       });
     }
 
-    for (var i = 0; i < total; i++) {
-      var map = this.parameters.maps[i];
+    for (let i = 0; i < total; i++) {
+      let map = this.parameters.maps[i];
       loadMap(map, i);
     }
   }
@@ -280,25 +280,25 @@ class HeightMap {
    * @method applyMap
    */
   applyMap() {
-    var previousName =
+    let previousName =
       typeof this.previous === "undefined"
         ? "default"
         : this.parameters.maps[this.previous].name;
 
-    var currentName = this.parameters.maps[this.current].name;
+    let currentName = this.parameters.maps[this.current].name;
 
-    var previousData = this.data[previousName];
-    var currentData = this.data[currentName];
+    let previousData = this.data[previousName];
+    let currentData = this.data[currentName];
 
-    var _this = this;
+    let _this = this;
 
     TweenLite.to({ factor: 1 }, 1, {
       factor: 0,
       ease: window.Elastic.easeOut,
       onUpdate: function() {
-        for (var i = 0, j = _this.geometry.vertices.length; i < j; i++) {
-          var vertex = _this.geometry.vertices[i];
-          var offset =
+        for (let i = 0, j = _this.geometry.vertices.length; i < j; i++) {
+          let vertex = _this.geometry.vertices[i];
+          let offset =
             currentData[i] +
             (previousData[i] - currentData[i]) * this.target.factor;
           vertex.z = offset;
@@ -307,7 +307,7 @@ class HeightMap {
         _this.geometry.verticesNeedUpdate = true;
 
         if (_this.lines) {
-          for (var k = 0, l = _this.lines.children.length; k < l; k++) {
+          for (let k = 0, l = _this.lines.children.length; k < l; k++) {
             _this.lines.children[k].geometry.verticesNeedUpdate = true;
           }
         }
@@ -327,14 +327,14 @@ class HeightMap {
   setColors() {
     // lines
     if (this.lines) {
-      for (var i = 0, j = this.lines.children.length; i < j; i++) {
-        var line = this.lines.children[i];
+      for (let i = 0, j = this.lines.children.length; i < j; i++) {
+        let line = this.lines.children[i];
 
-        for (var k = 0, l = line.geometry.vertices.length; k < l; k++) {
-          var vertex = line.geometry.vertices[k];
+        for (let k = 0, l = line.geometry.vertices.length; k < l; k++) {
+          let vertex = line.geometry.vertices[k];
 
           // (255 + 255 + 255) / 10 = 76.5, 76.5 / 20 = 3.8
-          var percent = map(vertex.z, [0, 3.8], [0, 2]);
+          let percent = map(vertex.z, [0, 3.8], [0, 2]);
           percent = Math.round(percent * 10) / 10;
 
           if (!this.colorsCache[percent]) {
@@ -352,16 +352,16 @@ class HeightMap {
 
     // planes/points
     if (this.plane || this.points) {
-      for (var i = 0, j = this.geometry.faces.length; i < j; i++) {
-        var face = this.geometry.faces[i];
+      for (let i = 0, j = this.geometry.faces.length; i < j; i++) {
+        let face = this.geometry.faces[i];
 
         // Assumption : instanceof THREE.Face3
-        for (var k = 0; k < 3; k++) {
-          var vertexIndex = face[this.faceIndices[k]];
-          var vertex = this.geometry.vertices[vertexIndex];
+        for (let k = 0; k < 3; k++) {
+          let vertexIndex = face[this.faceIndices[k]];
+          let vertex = this.geometry.vertices[vertexIndex];
 
           // (255 + 255 + 255) / 10 = 76.5, 76.5 / 20 = 3.8
-          var percent = map(vertex.z, [0, 3.8], [0, 2]);
+          let percent = map(vertex.z, [0, 3.8], [0, 2]);
           percent = Math.round(percent * 10) / 10;
 
           if (!this.colorsCache[percent]) {

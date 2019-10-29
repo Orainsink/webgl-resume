@@ -2,8 +2,6 @@
 
 import "../less/main3D.less";
 require("./polyfills/animFramePolyfill");
-require("./polyfills/bindPolyfill");
-require("./polyfills/indexOfPolyfill");
 
 import { TweenLite } from "gsap/all";
 

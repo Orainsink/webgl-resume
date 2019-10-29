@@ -5,9 +5,9 @@ import Section from "../classes/SectionClass";
 import TextPanel from "../objects3D/TextPanelObject3D";
 import LookAtField from "../objects3D/LookAtFieldObject3D";
 
-var endSection = new Section("end");
+let endSection = new Section("end");
 
-var text = new TextPanel(
+let text = new TextPanel(
   "T  H  A  N  K  S \n F  O  R    W  A  T  C  H  I  N  G",
   {
     align: "center",
@@ -18,7 +18,7 @@ var text = new TextPanel(
 );
 endSection.add(text.el);
 
-var field = new LookAtField({
+let field = new LookAtField({
   count: 50
 });
 endSection.add(field.el);

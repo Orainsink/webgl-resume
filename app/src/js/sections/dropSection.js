@@ -5,14 +5,14 @@ import Section from "../classes/SectionClass";
 import TextPanel from "../objects3D/TextPanelObject3D";
 import Drop from "../objects3D/DropObject3D";
 
-var dropSection = new Section("drop");
+let dropSection = new Section("drop");
 
-var drop = new Drop({ amplitude: 4 });
+let drop = new Drop({ amplitude: 4 });
 drop.el.rotation.x = -1.2;
 drop.el.position.y = -10;
 dropSection.add(drop.el);
 
-var text = new TextPanel("F  R  O  M \n A N   I D E A", {
+let text = new TextPanel("F  R  O  M \n A N   I D E A", {
   align: "right",
   style: "",
   size: 50,

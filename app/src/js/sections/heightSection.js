@@ -5,9 +5,9 @@ import Section from "../classes/SectionClass";
 import TextPanel from "../objects3D/TextPanelObject3D";
 import HeightMap from "../objects3D/HeightMapObject3D";
 
-var heightSection = new Section("height");
+let heightSection = new Section("height");
 
-var heightMap = new HeightMap({
+let heightMap = new HeightMap({
   horizontal: true,
   vertical: false,
   plane: false,
@@ -22,7 +22,7 @@ heightMap.el.position.z = -10;
 heightMap.el.rotation.y = -0.6;
 heightSection.add(heightMap.el);
 
-var text = new TextPanel("L  E  T    I  T \n M  O  R  P  H", {
+let text = new TextPanel("L  E  T    I  T \n M  O  R  P  H", {
   align: "right",
   style: "",
   size: 50,

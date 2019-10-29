@@ -5,9 +5,9 @@ import Section from "../classes/SectionClass";
 import Smoke from "../objects3D/SmokeObject3D";
 import Neon from "../objects3D/NeonObject3D";
 
-var neonsSection = new Section("neons");
+let neonsSection = new Section("neons");
 
-var smoke = new Smoke({
+let smoke = new Smoke({
   planesNumber: 3,
   frontColor: "#4c4c4c",
   backColor: "#ffffff",
@@ -37,17 +37,17 @@ var smoke = new Smoke({
 });
 neonsSection.add(smoke.el);
 
-var neonA = new Neon();
+let neonA = new Neon();
 
-var neonB = new Neon();
+let neonB = new Neon();
 neonB.el.position.set(0, 0, 0);
 neonB.el.rotation.z = 2;
 
-var neonC = new Neon();
+let neonC = new Neon();
 neonC.el.position.set(0, 13, 0);
 neonC.el.rotation.z = 2;
 
-var neonD = new Neon();
+let neonD = new Neon();
 neonD.el.position.set(0, -13, 0);
 neonD.el.rotation.z = 2;
 
@@ -86,7 +86,7 @@ neonsSection.onStop(function() {
   neonD.el.visible = false;
 });
 
-var smokePlaying = false;
+let smokePlaying = false;
 
 neonsSection.smokeStart = function() {
   if (smokePlaying) {

@@ -6,13 +6,13 @@ import TextPanel from "../objects3D/TextPanelObject3D";
 import Ball from "../objects3D/BallObject3D";
 import Grid from "../objects3D/GridObject3D";
 
-var ballSection = new Section("ball");
+let ballSection = new Section("ball");
 
-var ball = new Ball();
+let ball = new Ball();
 ball.el.rotation.z = 2;
 ballSection.add(ball.el);
 
-var grid = new Grid({
+let grid = new Grid({
   step: 5,
   stepsX: 11,
   stepsY: 11,
@@ -22,7 +22,7 @@ grid.el.rotation.set(1.5, 1, 2);
 grid.el.position.x = -20;
 ballSection.add(grid.el);
 
-var text = new TextPanel("G  I  V  E \n S  H  A  P  E", {
+let text = new TextPanel("G  I  V  E \n S  H  A  P  E", {
   align: "left",
   style: "",
   size: 50,

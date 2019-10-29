@@ -2,8 +2,6 @@
 
 import "../less/main2D.less";
 require("./polyfills/animFramePolyfill");
-require("./polyfills/bindPolyfill");
-require("./polyfills/indexOfPolyfill");
 
 console.log("mobile page");
 

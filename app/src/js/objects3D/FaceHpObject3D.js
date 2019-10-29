@@ -18,20 +18,19 @@ matCap.uniforms.map.value = new THREE.TextureLoader().load(
  * @constructor
  * @requires THREE, TweenLite, random, yoyo, matCap
  */
-function Face() {
-  var group = new THREE.Object3D();
+class Face {
+  constructor() {
+    let group = new THREE.Object3D();
 
-  var loader = new THREE.LegacyJSONLoader();
-  loader.load(
-    "public/3D/face-hp.json",
-    function(geometry) {
-      var mesh = new THREE.Mesh(geometry, matCap);
+    let loader = new THREE.LegacyJSONLoader();
+    loader.load("public/3D/face-hp.json", (geometry) => {
+      let mesh = new THREE.Mesh(geometry, matCap);
       mesh.scale.x = 1.5;
       mesh.scale.y = 1.5;
 
       group.add(mesh);
 
-      var idleTween = TweenLite.to({ y: -0.2 }, 2, {
+      let idleTween = TweenLite.to({ y: -0.2 }, 2, {
         y: 0.2,
         paused: true,
         onUpdate: function() {
@@ -46,7 +45,7 @@ function Face() {
       };
 
       this.out = function(way) {
-        var x = way === "up" ? -1 : 1;
+        let x = way === "up" ? -1 : 1;
         TweenLite.to(mesh.rotation, 1.5, { x: x });
       };
 
@@ -57,18 +56,14 @@ function Face() {
       this.stop = function() {
         idleTween.pause();
       };
-    }.bind(this)
-  );
+    });
 
-  this.el = group;
-
-  this.start = function() {};
-
-  this.stop = this.start;
-
-  this.in = this.start;
-
-  this.out = this.start;
+    this.el = group;
+    this.start = function() {};
+    this.stop = this.start;
+    this.in = this.start;
+    this.out = this.start;
+  }
 }
 
 export default Face;

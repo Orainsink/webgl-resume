@@ -24,22 +24,22 @@ THREE.LegacyJSONLoader = (function() {
       constructor: LegacyJSONLoader,
 
       load: function(url, onLoad, onProgress, onError) {
-        var scope = this;
+        let scope = this;
 
-        var path =
+        let path =
           this.path === "" ? THREE.LoaderUtils.extractUrlBase(url) : this.path;
 
-        var loader = new THREE.FileLoader(this.manager);
+        let loader = new THREE.FileLoader(this.manager);
         loader.setPath(this.path);
         loader.setWithCredentials(this.withCredentials);
         loader.load(
           url,
           function(text) {
-            var json = JSON.parse(text);
-            var metadata = json.metadata;
+            let json = JSON.parse(text);
+            let metadata = json.metadata;
 
             if (metadata !== undefined) {
-              var type = metadata.type;
+              let type = metadata.type;
 
               if (type !== undefined) {
                 if (type.toLowerCase() === "object") {
@@ -53,7 +53,7 @@ THREE.LegacyJSONLoader = (function() {
               }
             }
 
-            var object = scope.parse(json, path);
+            let object = scope.parse(json, path);
             onLoad(object.geometry, object.materials);
           },
           onProgress,
@@ -62,7 +62,7 @@ THREE.LegacyJSONLoader = (function() {
       },
 
       parse: (function() {
-        var _BlendingMode = {
+        let _BlendingMode = {
           NoBlending: THREE.NoBlending,
           NormalBlending: THREE.NormalBlending,
           AdditiveBlending: THREE.AdditiveBlending,
@@ -71,14 +71,14 @@ THREE.LegacyJSONLoader = (function() {
           CustomBlending: THREE.CustomBlending
         };
 
-        var _color = new THREE.Color();
-        var _textureLoader = new THREE.TextureLoader();
-        var _materialLoader = new THREE.MaterialLoader();
+        let _color = new THREE.Color();
+        let _textureLoader = new THREE.TextureLoader();
+        let _materialLoader = new THREE.MaterialLoader();
 
         function initMaterials(materials, texturePath, crossOrigin, manager) {
-          var array = [];
+          let array = [];
 
-          for (var i = 0; i < materials.length; ++i) {
+          for (let i = 0; i < materials.length; ++i) {
             array[i] = createMaterial(
               materials[i],
               texturePath,
@@ -93,17 +93,17 @@ THREE.LegacyJSONLoader = (function() {
         function createMaterial(m, texturePath, crossOrigin, manager) {
           // convert from old material format
 
-          var textures = {};
+          let textures = {};
 
           //
 
-          var json = {
+          let json = {
             uuid: THREE.Math.generateUUID(),
             type: "MeshLambertMaterial"
           };
 
-          for (var name in m) {
-            var value = m[name];
+          for (let name in m) {
+            let value = m[name];
 
             switch (name) {
               case "DbgColor":
@@ -388,10 +388,10 @@ THREE.LegacyJSONLoader = (function() {
           crossOrigin,
           manager
         ) {
-          var fullPath = texturePath + path;
-          var loader = manager.getHandler(fullPath);
+          let fullPath = texturePath + path;
+          let loader = manager.getHandler(fullPath);
 
-          var texture;
+          let texture;
 
           if (loader !== null) {
             texture = loader.load(fullPath);
@@ -425,7 +425,7 @@ THREE.LegacyJSONLoader = (function() {
             texture.anisotropy = anisotropy;
           }
 
-          var uuid = THREE.Math.generateUUID();
+          let uuid = THREE.Math.generateUUID();
 
           textures[uuid] = texture;
 
@@ -437,7 +437,7 @@ THREE.LegacyJSONLoader = (function() {
             return value & (1 << position);
           }
 
-          var i,
+          let i,
             j,
             fi,
             offset,
@@ -679,21 +679,21 @@ THREE.LegacyJSONLoader = (function() {
         }
 
         function parseSkin(json, geometry) {
-          var influencesPerVertex =
+          let influencesPerVertex =
             json.influencesPerVertex !== undefined
               ? json.influencesPerVertex
               : 2;
 
           if (json.skinWeights) {
             for (
-              var i = 0, l = json.skinWeights.length;
+              let i = 0, l = json.skinWeights.length;
               i < l;
               i += influencesPerVertex
             ) {
-              var x = json.skinWeights[i];
-              var y = influencesPerVertex > 1 ? json.skinWeights[i + 1] : 0;
-              var z = influencesPerVertex > 2 ? json.skinWeights[i + 2] : 0;
-              var w = influencesPerVertex > 3 ? json.skinWeights[i + 3] : 0;
+              let x = json.skinWeights[i];
+              let y = influencesPerVertex > 1 ? json.skinWeights[i + 1] : 0;
+              let z = influencesPerVertex > 2 ? json.skinWeights[i + 2] : 0;
+              let w = influencesPerVertex > 3 ? json.skinWeights[i + 3] : 0;
 
               geometry.skinWeights.push(new THREE.Vector4(x, y, z, w));
             }
@@ -701,14 +701,14 @@ THREE.LegacyJSONLoader = (function() {
 
           if (json.skinIndices) {
             for (
-              var i = 0, l = json.skinIndices.length;
+              let i = 0, l = json.skinIndices.length;
               i < l;
               i += influencesPerVertex
             ) {
-              var a = json.skinIndices[i];
-              var b = influencesPerVertex > 1 ? json.skinIndices[i + 1] : 0;
-              var c = influencesPerVertex > 2 ? json.skinIndices[i + 2] : 0;
-              var d = influencesPerVertex > 3 ? json.skinIndices[i + 3] : 0;
+              let a = json.skinIndices[i];
+              let b = influencesPerVertex > 1 ? json.skinIndices[i + 1] : 0;
+              let c = influencesPerVertex > 2 ? json.skinIndices[i + 2] : 0;
+              let d = influencesPerVertex > 3 ? json.skinIndices[i + 3] : 0;
 
               geometry.skinIndices.push(new THREE.Vector4(a, b, c, d));
             }
@@ -735,19 +735,19 @@ THREE.LegacyJSONLoader = (function() {
         }
 
         function parseMorphing(json, geometry) {
-          var scale = json.scale;
+          let scale = json.scale;
 
           if (json.morphTargets !== undefined) {
-            for (var i = 0, l = json.morphTargets.length; i < l; i++) {
+            for (let i = 0, l = json.morphTargets.length; i < l; i++) {
               geometry.morphTargets[i] = {};
               geometry.morphTargets[i].name = json.morphTargets[i].name;
               geometry.morphTargets[i].vertices = [];
 
-              var dstVertices = geometry.morphTargets[i].vertices;
-              var srcVertices = json.morphTargets[i].vertices;
+              let dstVertices = geometry.morphTargets[i].vertices;
+              let srcVertices = json.morphTargets[i].vertices;
 
-              for (var v = 0, vl = srcVertices.length; v < vl; v += 3) {
-                var vertex = new THREE.Vector3();
+              for (let v = 0, vl = srcVertices.length; v < vl; v += 3) {
+                let vertex = new THREE.Vector3();
                 vertex.x = srcVertices[v] * scale;
                 vertex.y = srcVertices[v + 1] * scale;
                 vertex.z = srcVertices[v + 2] * scale;
@@ -762,20 +762,20 @@ THREE.LegacyJSONLoader = (function() {
               'THREE.JSONLoader: "morphColors" no longer supported. Using them as face colors.'
             );
 
-            var faces = geometry.faces;
-            var morphColors = json.morphColors[0].colors;
+            let faces = geometry.faces;
+            let morphColors = json.morphColors[0].colors;
 
-            for (var i = 0, l = faces.length; i < l; i++) {
+            for (let i = 0, l = faces.length; i < l; i++) {
               faces[i].color.fromArray(morphColors, i * 3);
             }
           }
         }
 
         function parseAnimations(json, geometry) {
-          var outputAnimations = [];
+          let outputAnimations = [];
 
           // parse old style Bone/Hierarchy animations
-          var animations = [];
+          let animations = [];
 
           if (json.animation !== undefined) {
             animations.push(json.animation);
@@ -789,8 +789,8 @@ THREE.LegacyJSONLoader = (function() {
             }
           }
 
-          for (var i = 0; i < animations.length; i++) {
-            var clip = THREE.AnimationClip.parseAnimation(
+          for (let i = 0; i < animations.length; i++) {
+            let clip = THREE.AnimationClip.parseAnimation(
               animations[i],
               geometry.bones
             );
@@ -800,7 +800,7 @@ THREE.LegacyJSONLoader = (function() {
           // parse implicit morph animations
           if (geometry.morphTargets) {
             // TODO: Figure out what an appropraite FPS is for morph target animations -- defaulting to 10, but really it is completely arbitrary.
-            var morphAnimationClips = THREE.AnimationClip.CreateClipsFromMorphTargetSequences(
+            let morphAnimationClips = THREE.AnimationClip.CreateClipsFromMorphTargetSequences(
               geometry.morphTargets,
               10
             );
@@ -823,7 +823,7 @@ THREE.LegacyJSONLoader = (function() {
             json.scale = 1.0;
           }
 
-          var geometry = new THREE.Geometry();
+          let geometry = new THREE.Geometry();
 
           parseModel(json, geometry);
           parseSkin(json, geometry);
@@ -836,7 +836,7 @@ THREE.LegacyJSONLoader = (function() {
           if (json.materials === undefined || json.materials.length === 0) {
             return { geometry: geometry };
           } else {
-            var materials = initMaterials(
+            let materials = initMaterials(
               json.materials,
               this.resourcePath || path,
               this.crossOrigin,

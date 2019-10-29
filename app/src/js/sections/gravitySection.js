@@ -4,9 +4,9 @@ import Section from "../classes/SectionClass";
 
 import GravityGrid from "../objects3D/GravityGridObject3D";
 
-var gravitySection = new Section("gravity");
+let gravitySection = new Section("gravity");
 
-var grid = new GravityGrid({
+let grid = new GravityGrid({
   linesColor: "#666666"
 });
 grid.el.position.z = 0;

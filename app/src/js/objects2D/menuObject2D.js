@@ -10,13 +10,13 @@ require("jquery-ui/ui/effect.js");
  * @requires jQuery
  */
 function Menu() {
-  var $el = jQuery(".menu");
-  var $button = $el.find(".menu__button");
-  var $itemsContainer = $el.find(".menu__items");
-  var $items = $el.find(".menu__item");
+  const $el = jQuery(".menu");
+  const $button = $el.find(".menu__button");
+  const $itemsContainer = $el.find(".menu__items");
+  const $items = $el.find(".menu__item");
 
-  var _callback = function() {};
-  var timeouts = [];
+  let _callback = function() {};
+  let timeouts = [];
 
   function onMouseover() {
     $items.on("click", _callback);
@@ -27,9 +27,9 @@ function Menu() {
     $button.stop().animate({ opacity: 0 }, 400);
 
     $items.each(function(i) {
-      var $el = jQuery(this);
+      const $el = jQuery(this);
 
-      var timeout = window.setTimeout(function() {
+      const timeout = window.setTimeout(function() {
         $el.stop().animate({ opacity: 1 }, 400);
       }, i * 200);
 

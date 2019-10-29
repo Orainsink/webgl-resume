@@ -5,12 +5,12 @@ import Section from "../classes/SectionClass";
 import TextPanel from "../objects3D/TextPanelObject3D";
 import Rocks from "../objects3D/RocksObject3D";
 
-var rocksSection = new Section("rocks");
+let rocksSection = new Section("rocks");
 
-var rocks = new Rocks();
+let rocks = new Rocks();
 rocksSection.add(rocks.el);
 
-var text = new TextPanel("K  E  E  P  \n  L  E  A  R  N  I  N  G", {
+let text = new TextPanel("K  E  E  P  \n  L  E  A  R  N  I  N  G", {
   align: "center",
   style: "",
   size: 50,

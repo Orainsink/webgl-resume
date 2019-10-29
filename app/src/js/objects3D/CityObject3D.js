@@ -2,107 +2,112 @@
 
 const THREE = require("three");
 require("../utils/legacyJSONLoaderUtil");
-
 import dilate from "../utils/dilateUtil";
-
 import outlineMaterial from "../materials/outlineMaterial";
 
-function City() {
-  this.el = new THREE.Object3D();
+// TODO something went wrong in this page
+/**
+ * City
+ *
+ * @class City
+ * @constructor
+ * @requires jQuery, THREE
+ */
+class City {
+  constructor() {
+    this.el = new THREE.Object3D();
 
-  this.groups = {};
-  this.baseMaterial = new THREE.MeshLambertMaterial({ color: "#333333" });
+    this.groups = {};
+    this.baseMaterial = new THREE.MeshLambertMaterial({ color: "#333333" });
 
-  this.loader = new THREE.LegacyJSONLoader();
-}
-
-City.prototype.addGroup = function(data) {
-  if (!this.groups[data.name]) {
-    this.groups[data.name] = new THREE.Object3D();
+    this.loader = new THREE.LegacyJSONLoader();
   }
+  addGroup(data) {
+    if (!this.groups[data.name]) {
+      this.groups[data.name] = new THREE.Object3D();
+    }
 
-  if (!data.outline) {
-    data.outline = {};
-  }
+    if (!data.outline) {
+      data.outline = {};
+    }
 
-  var groupName = data.name;
+    const groupName = data.name;
 
-  for (var objName in data.objs) {
-    if (data.objs.hasOwnProperty(objName)) {
-      var url = data.objs[objName];
+    for (const objName in data.objs) {
+      if (data.objs.hasOwnProperty(objName)) {
+        const url = data.objs[objName];
 
-      if (!data.outline[objName]) {
-        data.outline[objName] = {};
+        if (!data.outline[objName]) {
+          data.outline[objName] = {};
+        }
+
+        const isSolid = !!data.outline[objName].solid;
+        const offset = data.outline[objName].offset
+          ? data.outline[objName].offset
+          : 0.15;
+
+        this.loadObj(groupName, url, offset, isSolid);
       }
-
-      var isSolid = !!data.outline[objName].solid;
-      var offset = data.outline[objName].offset
-        ? data.outline[objName].offset
-        : 0.15;
-
-      this.loadObj(groupName, url, offset, isSolid);
     }
   }
-};
 
-City.prototype.loadObj = function(groupName, url, offset, isSolid) {
-  var _this = this;
-
-  this.loader.load(url, function(geometry) {
-    _this.processObj({
-      geometry: geometry,
-      group: groupName,
-      offset: offset,
-      solid: isSolid
+  loadObj(groupName, url, offset, isSolid) {
+    this.loader.load(url, (geometry) => {
+      this.processObj({
+        geometry: geometry,
+        group: groupName,
+        offset: offset,
+        solid: isSolid
+      });
     });
-  });
-};
-
-City.prototype.processObj = function(data) {
-  var groupName = data.group;
-  var geometry = data.geometry;
-
-  var mesh = new THREE.Mesh(geometry, this.baseMaterial);
-
-  this.groups[groupName].add(mesh);
-
-  var outlineGeometry = geometry.clone();
-  dilate(outlineGeometry, data.offset);
-
-  var localOutlineMaterial = outlineMaterial.clone();
-  localOutlineMaterial.uniforms = THREE.UniformsUtils.clone(
-    outlineMaterial.uniforms
-  );
-  // TODO add customColor
-  /*outlineGeometry.attributes = THREE.UniformsUtils.clone({
-    customColor: { type: "v4", value: [] }
-  });*/
-
-  var outlineMesh = new THREE.Mesh(outlineGeometry, localOutlineMaterial);
-
-  outlineGeometry.computeBoundingBox();
-  var height =
-    outlineGeometry.boundingBox.max.y - outlineGeometry.boundingBox.min.y;
-
-  for (var i = 0, j = outlineGeometry.vertices.length; i < j; i++) {
-    var color;
-
-    if (data.solid) {
-      color = new THREE.Vector4(0.7, 0.7, 0.7, 1.0);
-    } else {
-      var vertex = outlineGeometry.vertices[i];
-      var percent = Math.floor((vertex.y * 100) / height) - 10;
-      color = new THREE.Vector4(0.7, 0.7, 0.7, percent / 100);
-    }
-    // TODO add customColor
-    // localOutlineMaterial.attributes.customColor.value[i] = color;
   }
 
-  this.groups[groupName].add(outlineMesh);
-};
+  processObj(data) {
+    const groupName = data.group;
+    const geometry = data.geometry;
 
-City.prototype.showGroup = function(name) {
-  this.el.add(this.groups[name]);
-};
+    let mesh = new THREE.Mesh(geometry, this.baseMaterial);
+
+    this.groups[groupName].add(mesh);
+
+    const outlineGeometry = geometry.clone();
+    dilate(outlineGeometry, data.offset);
+
+    const localOutlineMaterial = outlineMaterial.clone();
+    localOutlineMaterial.uniforms = THREE.UniformsUtils.clone(
+      outlineMaterial.uniforms
+    );
+    // TODO add customColor
+    /*outlineGeometry.attributes = THREE.UniformsUtils.clone({
+      customColor: { type: "v4", value: [] }
+    });*/
+
+    let outlineMesh = new THREE.Mesh(outlineGeometry, localOutlineMaterial);
+
+    outlineGeometry.computeBoundingBox();
+    const height =
+      outlineGeometry.boundingBox.max.y - outlineGeometry.boundingBox.min.y;
+
+    for (let i = 0, j = outlineGeometry.vertices.length; i < j; i++) {
+      let color;
+
+      if (data.solid) {
+        color = new THREE.Vector4(0.7, 0.7, 0.7, 1.0);
+      } else {
+        const vertex = outlineGeometry.vertices[i];
+        const percent = Math.floor((vertex.y * 100) / height) - 10;
+        color = new THREE.Vector4(0.7, 0.7, 0.7, percent / 100);
+      }
+      // TODO add customColor
+      // localOutlineMaterial.attributes.customColor.value[i] = color;
+    }
+
+    this.groups[groupName].add(outlineMesh);
+  }
+
+  showGroup(name) {
+    this.el.add(this.groups[name]);
+  }
+}
 
 export default City;
