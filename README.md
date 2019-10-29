@@ -27,11 +27,10 @@
 **Todo**
 
 - [ ] 尝试用 GLTFExporter 重新导出模型数据, 废弃老版本的 JSONloader
-- [ ] 由于chrome的策略, 现在不能页面打开就播放音频, 需要添加一个触发音频的按钮
+- [ ] 修复 sound 不播放的问题
 - [ ] 第4页模型出错
 - [ ] 倒数第二页城市模型边缘光消失, 原因是新版本three.js attribute需要放在geometry内设置
-- [ ] mobile 页面未测试跑通, 目测还有 bug
-- [ ] 添加测试代码
+- [ ] mobile 页面有 bug
 - [ ] 添加自定义内容, 代码重构
 
 **quick start**
@@ -40,19 +39,22 @@
 # install dependencies
 npm i
 # dev: server will run at localhost:9000
-npm start
+npm run start
 # build dist
-npm build
+npm run build
 ```
 
 **others**
 
-- 打包后可直接运行的文件
+- 打包后直接运行需要的文件
 
 ```
 app_____
      |_dist/
+     |_public/
      |_index.html
 ```
 
-- `public/`及`src/`为打包前的资源目录
+- `src/`为打包前的资源目录
+
+- 由于未使用 webpack 打包 index.html, 在 run dev 和 build 脚本时要修改 app/index.html 中对应的代码, 以加载不同的 js
