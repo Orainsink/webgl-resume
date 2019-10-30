@@ -67,10 +67,13 @@
     console.log("More information and source code can be found here: https://github.com/Orainsink/webgl-polyfile");
     console.log("And the original author: https://github.com/vaalentin/2015");
     // disable console
-    if (!window.console) { window.console = {}; }
+    if (!window.console) {
+      window.console = {};
+    }
     var methods = ['log', 'debug', 'warn', 'info'];
-    for (var i = 0; i < methods.length; i++){
-      console[methods[i]] = function () {};
+    for (var i = 0; i < methods.length; i++) {
+      console[methods[i]] = function () {
+      };
     }
 
     // features
@@ -98,47 +101,25 @@
 
     var head = document.getElementsByTagName('head')[0];
 
-    // build 配置
-    var js_2D = [
-      "./dist/main_2D.js",
-      "./dist/vendors~main_2D~main_3D.js",
+    // dev 配置
+    var js = [
+      "dist/manifest.js",
+      "dist/styles.js",
+      "dist/vendor.js",
+      null,
     ];
-    var js_3D = [
-      "./dist/main_3D.js",
-      "./dist/vendors~main_2D~main_3D.js",
-      "./dist/vendors~main_3D.js",
-    ];
-
-    /*// dev 配置
-    var js_2D = [
-      "./dist/main_2D.js",
-      "./dist/main_2D~main_3D.js",
-      "./dist/vendors~main_2D.js",
-      "./dist/vendors~main_2D~main_3D.js"
-    ];
-    var js_3D = [
-      "./dist/main_3D.js",
-      "./dist/main_2D~main_3D.js",
-      "./dist/vendors~main_2D~main_3D.js",
-      "./dist/vendors~main_3D.js"
-    ];*/
-
+    var d;
     if (webGL() && !mobile()) {
-      for (let i = 0; i < js_3D.length; i++) {
-        let jsPayload = document.createElement('script');
-        jsPayload.type = 'text/javascript';
-        jsPayload.async = jsPayload.defer = false;
-        jsPayload.src = js_3D[i];
-        head.appendChild(jsPayload);
-      }
+      d = "3D"
     } else {
-      for (let i = 0; i < js_2D.length; i++) {
-        let jsPayload = document.createElement('script');
-        jsPayload.type = 'text/javascript';
-        jsPayload.async = jsPayload.defer = false;
-        jsPayload.src = js_2D[i];
-        head.appendChild(jsPayload);
-      }
+      d = "2D"
+    }
+    for (let i = 0; i < js.length; i++) {
+      let jsPayload = document.createElement('script');
+      jsPayload.type = 'text/javascript';
+      jsPayload.async = jsPayload.defer = false;
+      jsPayload.src = js[i] || "dist/main_" + d + ".js"
+      head.appendChild(jsPayload);
     }
   })();
 </script>

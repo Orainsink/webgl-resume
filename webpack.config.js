@@ -20,12 +20,43 @@ module.exports = {
     main_2D: "./app/src/js/main2D.js",
     main_3D: "./app/src/js/main3D.js"
   },
-  // vendor 分离
+  /*// vendor 分离
   optimization: {
     splitChunks: {
       chunks: "all"
     }
+  },*/
+  optimization: {
+    runtimeChunk: {
+      name: "manifest"
+    },
+    splitChunks: {
+      chunks: "async",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: false,
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: "initial",
+          name: "vendor",
+          priority: 10,
+          enforce: true
+        },
+        styles: {
+          name: "styles",
+          test: /\.(scss|css)$/,
+          chunks: "all",
+          minChunks: 1,
+          reuseExistingChunk: true,
+          enforce: true
+        }
+      }
+    }
   },
+
   // 输出路径
   output: {
     path: __dirname + "/app/dist",
