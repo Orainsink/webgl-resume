@@ -22,7 +22,7 @@
 - [x] 修复head切换到trial过程中动画的一些问题
 - [x] 缩小 vendor.js 的体积
 - [x] 修复HelloSection不显示的问题
-- [ ] ~~打包 index.html, 优化js加载的逻辑(用htmlwebpackplugin打包html,多对多,发现没打包进去vendor)~~
+- [ ] ~~打包 index.html~~
 
 **Todo**
 
@@ -56,5 +56,3 @@ app_____
 ```
 
 - `src/`为打包前的资源目录
-
-- 由于未使用 webpack 打包 index.html, 在 run dev 和 build 脚本时要修改 app/index.html 中对应的代码, 以加载不同的 js
