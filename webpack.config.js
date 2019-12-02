@@ -15,17 +15,11 @@ module.exports = {
       ignoreOrder: false
     })
   ],
-  // 多入口配置,2d对应手机,3d对应pc web,按需加载代码在index.html
+  // 多入口配置,2d对应手机,3d对应pc web
   entry: {
     main_2D: "./app/src/js/main2D.js",
     main_3D: "./app/src/js/main3D.js"
   },
-  /*// vendor 分离
-  optimization: {
-    splitChunks: {
-      chunks: "all"
-    }
-  },*/
   optimization: {
     runtimeChunk: {
       name: "manifest"
@@ -47,7 +41,7 @@ module.exports = {
         },
         styles: {
           name: "styles",
-          test: /\.(scss|css)$/,
+          test: /\.(less|scss|css)$/,
           chunks: "all",
           minChunks: 1,
           reuseExistingChunk: true,
@@ -56,7 +50,6 @@ module.exports = {
       }
     }
   },
-
   // 输出路径
   output: {
     path: __dirname + "/app/dist",

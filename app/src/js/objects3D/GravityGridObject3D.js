@@ -278,6 +278,7 @@ class GravityGrid {
           ]
         },
         onUpdate: function() {
+          console.log("this._targets", this.target);
           satelliteA.position.x = this.target.xA;
           satelliteA.position.y = this.target.yA;
 
